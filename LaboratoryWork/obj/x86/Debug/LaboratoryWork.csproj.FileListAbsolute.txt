@@ -1,0 +1,51 @@
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\LaboratoryWork.exe
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\LaboratoryWork.pdb
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.BootForm.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.ImageBoxNew.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.TestForm.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.GraficForm.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.MainForm.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.Properties.Resources.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.exe
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.pdb
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.exe
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.pdb
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\LaboratoryWork.exe
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\LaboratoryWork.pdb
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.BootForm.resources
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.ImageBoxNew.resources
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.TestForm.resources
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.GraficForm.resources
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.MainForm.resources
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.Properties.Resources.resources
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.csproj.GenerateResource.Cache
+C:\Users\Ser_Shedon\Desktop\рушко\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.Grafic1.resources
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.exe
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.pdb
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\bin\Debug\LaboratoryWork.exe
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\bin\Debug\LaboratoryWork.pdb
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.csprojResolveAssemblyReference.cache
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\WindowsFormsApplication3.BootForm.resources
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.Grafic1.resources
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\WindowsFormsApplication3.ImageBoxNew.resources
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\WindowsFormsApplication3.TestForm.resources
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\WindowsFormsApplication3.GraficForm.resources
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\WindowsFormsApplication3.MainForm.resources
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.Properties.Resources.resources
+C:\Users\Ser_Shedon\Desktop\рушко\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.csproj.GenerateResource.Cache
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.exe
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.pdb
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\bin\Debug\LaboratoryWork.exe
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\bin\Debug\LaboratoryWork.pdb
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.csprojResolveAssemblyReference.cache
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.Grafic1.resources
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.Properties.Resources.resources
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.csproj.GenerateResource.Cache
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.BootForm.resources
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.ImageBoxNew.resources
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.TestForm.resources
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.GraficForm.resources
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.MainForm.resources

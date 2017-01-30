@@ -1,0 +1,13 @@
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.ImageBoxNew.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.TestForm.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.GraficForm.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.MainForm.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.BootForm.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\LaboratoryWork.exe
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\bin\Debug\LaboratoryWork.pdb
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.Properties.Resources.resources
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.exe
+C:\Users\e.kuriga\Documents\Visual Studio 2010\Projects\WindowsFormsApplication3\WindowsFormsApplication3\obj\x86\Debug\LaboratoryWork.pdb
