@@ -14,42 +14,20 @@ namespace LaboratoryWork
 
         private static float f //частота в герцах (GraficForm.f в мегагерцах) задается через трекбар или текстбокс в GraficForm
         {
-            get
-            {
-                return Consts.f * (float)Math.Pow(10, 6);
-            }
+            get  {  return Consts.f * (float)Math.Pow(10, 6); }
         }
 
         public static float k_f//функция  чтения и записи коэффициента К
         {
-            get
-            {
-                return My_k_f;
-            }
+            get { return My_k_f;}
             
             set
             {
                 My_k_f = 2F * Pi * value * (float)Math.Pow(10, 6) / (3 * (float)Math.Pow(10, 8));//(float)Math.Pow(10, 6) т.к. в GraficForm частота в мегагерцах, тут в герцах
             }
         }
-        //функция для расчета d(f) (вызывается из GraficForm )
-        //можно через get и set для этого разкоментить и подбравить
-        public static void My_d_f(float d, float f)
-        {
-            d_f = d / f;
-        }
-        /* 
-        public static float My_d_f
-        {
-            get
-            {
-                return d_f;
-            }
-            set
-            {
-                d_f = GraficForm.d_f / GraficForm.f; // написать value вместо GraficForm.d_f или GraficForm.f, задаваться будет из GraficForm
-            }
-        }*/
+        public static void My_d_f(float d, float f) => d_f = d / f;
+
         /// <summary>
         /// вычисление конструктивных параметров
         /// </summary>
@@ -71,27 +49,17 @@ namespace LaboratoryWork
         public static void Catets(int Coal, int Hypotenuse, out int Catet1, out int Catet2)
         {
             if ((Coal < 90) || (Coal > 270))
-            {
                 Catet1 = (int)(Hypotenuse * Math.Cos(Coal / 180.0 * Math.PI)); //прилежащий
-            }
             else
-            {
                 Catet1 = (int)(-(Hypotenuse * Math.Cos(Coal / 180.0 * Math.PI)));
-            }
 
             if ((Coal > 90) && (Coal < 270))
-            {
                 Catet1 = -Catet1;
-            }
 
             if ((Coal > 0) && (Coal < 180))
-            {
                 Catet2 = (int)(Hypotenuse * Math.Sin(Coal / 180.0 * Math.PI)); //противолежащий
-            }
             else
-            {
                 Catet2 = (int)((Hypotenuse * Math.Sin(Coal / 180.0 * Math.PI)));
-            }
         }
 
         private static Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>> generalFunctionsByNameFunc =
