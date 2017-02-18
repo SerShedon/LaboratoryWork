@@ -45,7 +45,7 @@ D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\La
 D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.Properties.Resources.resources
 D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.csproj.GenerateResource.Cache
 D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.BootForm.resources
-D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.ImageBoxNew.resources
 D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.TestForm.resources
 D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.MainForm.resources
 D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.ParametrsForm.resources
+D:\документы\VS projects\LaboratoryWork\LaboratoryWork\obj\x86\Debug\LaboratoryWork.GraphBox.resources
