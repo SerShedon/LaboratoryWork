@@ -25,7 +25,7 @@ namespace LaboratoryWork
             Delegates.EnableButtonsGraphic = new Delegates.MyEvent(ShowControl);
         }
         public Form MyTestForm = new TestForm();
-        public Form MyGrafigForm = new GraficForm();
+        public Form MyGrafigForm = new ParametrsForm();
 
         void ShowControl(int Button)
         {

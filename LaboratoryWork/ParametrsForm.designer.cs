@@ -1,6 +1,6 @@
 ﻿namespace LaboratoryWork
 {
-    partial class GraficForm
+    partial class ParametrsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -803,10 +803,10 @@
             this.Name = "GraficForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Графики";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Shown += new System.EventHandler(this.GraficForm_Shown);
-            this.Move += new System.EventHandler(this.GraficForm_Move);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParametrsFormClosing);
+            this.Load += new System.EventHandler(this.ParametrsFormLoad);
+            this.Shown += new System.EventHandler(this.ParametrsFormShown);
+            this.Move += new System.EventHandler(this.ParametrsFormMove);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();

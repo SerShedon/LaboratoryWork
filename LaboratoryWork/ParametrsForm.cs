@@ -7,10 +7,10 @@ using LaboratoryWork;
 
 namespace LaboratoryWork
 {
-    public partial class GraficForm : Form
+    public partial class ParametrsForm : Form
     {
        
-        public GraficForm()
+        public ParametrsForm()
         {
             InitializeComponent();
             GetValuesFromTrackBars();
@@ -87,7 +87,7 @@ namespace LaboratoryWork
         {
             Coef_X1 = imageBoxNew1.CoefficientX;
             Coef_Y1 = imageBoxNew1.CoefficientY;
-            if (Consts.TypeFunctions == Enums.TypeFunction.Third)
+            if (Consts.TypeFunctions == Enums.TypeFunction.E_Crit)
             {
                 Coef_Y1 = Coef_Y1 / 3.5F;
             }
@@ -97,7 +97,7 @@ namespace LaboratoryWork
         {
             Coef_X2 = imageBoxNew2.CoefficientX;
             Coef_Y2 = imageBoxNew2.CoefficientY;
-            if (Consts.TypeFunctions == Enums.TypeFunction.Third)
+            if (Consts.TypeFunctions == Enums.TypeFunction.E_Crit)
             {
                 Coef_Y2 = Coef_Y2 / 3.5F;
             }
@@ -113,7 +113,7 @@ namespace LaboratoryWork
         Pen PenDrawAxis = new Pen(Color.Black, 2);
         Pen PenDrawGraph = new Pen(Color.Red, 2);
                 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ParametrsFormLoad(object sender, EventArgs e)
         {
             GetValuesFromTrackBars();
             WriteValuesInTextBoxs();
@@ -194,7 +194,9 @@ namespace LaboratoryWork
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             Consts.f = trackBar1.Value;
-            RefreshAll();
+
+            RefreshConstants();
+            RefreshPictureBoxs();
             textBox1.Text = Consts.f.ToString();
         }
 
@@ -202,21 +204,21 @@ namespace LaboratoryWork
         {
             Consts.N = trackBar2.Value;
             textBox2.Text = trackBar2.Value.ToString();
-            RefreshAll();            
+            RefreshPictureBoxs();            
         }
 
         private void trackBar3_Scroll(object sender, EventArgs e)
         {
             Consts.a = trackBar3.Value;
             textBox3.Text = trackBar3.Value.ToString();
-            RefreshAll();
+            RefreshPictureBoxs();
         }
 
         private void trackBar4_Scroll(object sender, EventArgs e)
         {
             Consts.M = trackBar4.Value;
             textBox4.Text = trackBar4.Value.ToString();
-            RefreshAll();
+            RefreshPictureBoxs();
         }
 
         private void trackBar5_Scroll(object sender, EventArgs e)
@@ -224,7 +226,7 @@ namespace LaboratoryWork
             Consts.d_f = trackBar5.Value ;
             
             textBox5.Text = (Consts.d_f /100.0).ToString("0.00");
-            RefreshAll();
+            RefreshPictureBoxs();
         }
 
         private void trackBar6_Scroll(object sender, EventArgs e)
@@ -232,7 +234,7 @@ namespace LaboratoryWork
             Consts.Q = trackBar6.Value;
 
             textBox6.Text = Consts.Q.ToString();
-            RefreshAll();
+            RefreshPictureBoxs();
         }
         #endregion
         
@@ -240,20 +242,20 @@ namespace LaboratoryWork
         #region
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.First;
-            RefreshAll();
+            Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
+            RefreshPictureBoxs();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.Second;
-            RefreshAll();
+            Consts.TypeFunctions = Enums.TypeFunction.E_Opt;
+            RefreshPictureBoxs();
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.Third;
-            RefreshAll();
+            Consts.TypeFunctions = Enums.TypeFunction.E_Crit;
+            RefreshPictureBoxs();
         }
         #endregion
 
@@ -383,11 +385,7 @@ namespace LaboratoryWork
 
         //рефреши
         #region
-        private void RefreshAll()
-        {
-            RefreshConstants();
-            RefreshPictureBoxs();
-        }
+        
 
         private void RefreshConstants()
         {
@@ -425,7 +423,7 @@ namespace LaboratoryWork
         }
         #endregion
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void ParametrsFormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             Hide();
@@ -433,7 +431,7 @@ namespace LaboratoryWork
 
         
 
-        private void GraficForm_Move(object sender, EventArgs e)
+        private void ParametrsFormMove(object sender, EventArgs e)
         {
             RefreshPictureBoxs();
         }
@@ -441,7 +439,7 @@ namespace LaboratoryWork
         private void VisibilityComponents()
         {
             bool TrueOrFalse = false;
-            if (Consts.TypeSpiralAntennas == Enums.TypeSpiralAntennas.Second)
+            if (Consts.TypeSpiralAntennas == Enums.TypeSpiralAntennas.System)
             {
                 TrueOrFalse = true;                
             }
@@ -461,7 +459,7 @@ namespace LaboratoryWork
             
         }
 
-        private void GraficForm_Shown(object sender, EventArgs e)
+        private void ParametrsFormShown(object sender, EventArgs e)
         {
             VisibilityComponents();
         }
@@ -488,20 +486,20 @@ namespace LaboratoryWork
 
         private void меньшеОптимальногоToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.First;
-            RefreshAll();
+            Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
+            RefreshPictureBoxs();
         }
 
         private void оптимальныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.Second;
-            RefreshAll();
+            Consts.TypeFunctions = Enums.TypeFunction.E_Opt;
+            RefreshPictureBoxs();
         }
 
         private void критическийToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.Third;
-            RefreshAll();
+            Consts.TypeFunctions = Enums.TypeFunction.E_Crit;
+            RefreshPictureBoxs();
         }
 
         private void декартоваяToolStripMenuItem_Click(object sender, EventArgs e)
@@ -517,17 +515,7 @@ namespace LaboratoryWork
             imageBoxNew2.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
             RefreshPictureBoxs();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            
-        }
-
-        private void GraficForm_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 
