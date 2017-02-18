@@ -23,7 +23,7 @@ namespace LaboratoryWork
             //imageBoxNew3
 
             InitializeImageBoxNew(imageBoxNew3);
-            imageBoxNew3.FunctionForCalculate = x => { return - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_Q); };
+            imageBoxNew3.FunctionForCalculate = x => { return - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.r); };
 
         }
         private void InitializeImageBoxNew(ImageBoxNew MyImageBoxNew)
