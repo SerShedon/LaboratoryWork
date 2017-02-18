@@ -59,8 +59,8 @@ namespace LaboratoryWork
         private void button1_Click(object sender, EventArgs e)
         {
             //задаем тип спиральной антенны и тип функции
-            Consts.TypeSpiralAntennas = Enums.TypeSpiralAntennas.First;
-            Consts.TypeFunctions = Enums.TypeFunction.First;
+            Consts.TypeSpiralAntennas = Enums.TypeSpiralAntennas.Single;
+            Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
             //показываем форму с графиками
             MyGrafigForm.Show();
 
@@ -69,8 +69,8 @@ namespace LaboratoryWork
         private void button4_Click(object sender, EventArgs e)
         {
             //задаем тип спиральной антенны и тип функции
-            Consts.TypeSpiralAntennas = Enums.TypeSpiralAntennas.Second;
-            Consts.TypeFunctions = Enums.TypeFunction.First;
+            Consts.TypeSpiralAntennas = Enums.TypeSpiralAntennas.System;
+            Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
             //показываем форму с графиками
             MyGrafigForm.ShowDialog();
         }
