@@ -348,22 +348,21 @@ namespace LaboratoryWork
         private void DrawGraph(PaintEventArgs e, Func<float, float> funcForCalculate, Pen MyP)
         {
             //инициализация значений
-            var pointDecAct = new PointF(xFirst, 0);   //текущая точка отрисовки графика
-            var pointDecNext = new PointF(pointDecAct.X + Dx, 0); ;  //следующая точка отрисовки графика            
-            var pointPolAct = pointDecAct;
-            var pointPolNext = pointDecNext;
+            var pointDecAct = new PointF(xFirst, funcForCalculate(xFirst));   //текущая точка отрисовки графика
+            var pointDecNext = new PointF(pointDecAct.X + Dx, 0);  //следующая точка отрисовки графика            
+            PointF pointPolAct;
+            PointF pointPolNext;
 
             var pointActForPaint = new PointF();
             var pointNextForPaint = new PointF();
-            pointDecAct.Y = funcForCalculate(pointDecAct.X);
 
-            for (; pointDecAct.X < xLast; pointDecAct.X = pointDecAct.X + Dx, pointDecNext.X = pointDecAct.X + Dx)//расчет х начального и последующего (x+Dx)
+            for (; pointDecAct.X < xLast; pointDecNext.X = pointDecAct.X + Dx)//расчет х начального и последующего (x+Dx)
             {
                 pointDecNext.Y = funcForCalculate(pointDecNext.X);
                 if (TypeCoordinateSystem == Enums.TypeCoordinateSystem.Polar)
                 {
-                    pointPolAct = Calculations.TranslateDecInPol(pointDecAct);
-                    pointPolNext = Calculations.TranslateDecInPol(pointDecNext);
+                    pointPolAct = TranslateDecInPol(pointDecAct);
+                    pointPolNext = TranslateDecInPol(pointDecNext);
                     //возможно вынести в функцию, для удобвства чтения
                     pointActForPaint.X = pointPolAct.X * CoefficientY;
                     pointActForPaint.Y = pointPolAct.Y * CoefficientY;
@@ -376,13 +375,48 @@ namespace LaboratoryWork
                     pointActForPaint.X = pointDecAct.X * CoefficientX;
                     pointActForPaint.Y = pointDecAct.Y * CoefficientY;
 
-                    pointNextForPaint.X = pointPolNext.X * CoefficientY;
-                    pointNextForPaint.Y = pointPolNext.Y * CoefficientY;
+                    pointNextForPaint.X = pointDecNext.X * CoefficientX;
+                    pointNextForPaint.Y = pointDecNext.Y * CoefficientY;
                 }
                 e.Graphics.DrawLine(MyP, pointActForPaint, pointNextForPaint);
 
+                pointDecAct.X = pointDecNext.X;
                 pointDecAct.Y = pointDecNext.Y;// текущий равняем к следующему для следующей итерации
             }
+        }
+
+        /// <summary>
+        /// перевод декартовых координат в полярные для отрисовки в деркатовой системе
+        /// </summary>
+        /// <param name="pointDec"></param>
+        /// <returns></returns>
+        private static PointF TranslateDecInPol(PointF pointDec)
+        {
+            var pointPol = new PointF();
+
+            pointPol.X = -CosInRadians(pointDec.X) * pointDec.Y;
+            pointPol.Y = -SinInRadians(pointDec.X) * pointDec.Y;
+            return pointPol;
+        }
+
+        /// <summary>
+        /// функция Cos возвращающая флот и считающая в градусах, а не радианах
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private static float CosInRadians(float x)
+        {
+            return (float)Math.Cos(x / 180F * Math.PI);
+        }
+
+        /// <summary>
+        /// функция Sin возвращающая флот и считающая в градусах, а не радианах
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private static float SinInRadians(float x)
+        {
+            return (float)Math.Sin(x / 180F * Math.PI);
         }
 
         private void InitializeComponent()
