@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Threading;
-using System.Collections.Generic;
-using LaboratoryWork;
 
 namespace LaboratoryWork
 {
@@ -16,17 +13,17 @@ namespace LaboratoryWork
             GetValuesFromTrackBars();
             //imageBoxNew1
             InitializeImageBoxNew(imageBoxNew1);
-            imageBoxNew1.FunctionForCalculate = - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_4);
+            imageBoxNew1.FunctionForCalculate = x => { return Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_4); };
 
             //imageBoxNew2
 
             InitializeImageBoxNew(imageBoxNew2);
-            imageBoxNew2.FunctionForCalculate = - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_Q);
+            imageBoxNew2.FunctionForCalculate = x => { return Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_Q); };
 
             //imageBoxNew3
 
             InitializeImageBoxNew(imageBoxNew3);
-            imageBoxNew3.FunctionForCalculate = - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.r);
+            imageBoxNew3.FunctionForCalculate = x => { return Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_Q); };
 
         }
         private void InitializeImageBoxNew(ImageBoxNew MyImageBoxNew)
