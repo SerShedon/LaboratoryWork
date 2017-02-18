@@ -26,7 +26,7 @@ namespace LaboratoryWork
             imageBoxNew3.FunctionForCalculate = x => { return - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.r); };
 
         }
-        private void InitializeImageBoxNew(ImageBoxNew MyImageBoxNew)
+        private void InitializeImageBoxNew(GraphBox MyImageBoxNew)
         {
             MyImageBoxNew.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
             MyImageBoxNew.X0_Pol = MyImageBoxNew.Width / 2;
@@ -261,7 +261,7 @@ namespace LaboratoryWork
         //функции для определения значений
         #region
 
-        private void ShowCoordinateInLabel(Label lb1, Label lb2, string TextForLabel1, string TextForLabel2, ImageBoxNew imageBoxNew, MouseEventArgs e, float CoefficientX, float CoefficientY)
+        private void ShowCoordinateInLabel(Label lb1, Label lb2, string TextForLabel1, string TextForLabel2, GraphBox imageBoxNew, MouseEventArgs e, float CoefficientX, float CoefficientY)
         {
 
             if (imageBoxNew.CoordinateSystem == Enums.TypeCoordinateSystem.Cartesian)

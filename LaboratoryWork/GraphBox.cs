@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace LaboratoryWork
 {
-    class ImageBoxNew : PictureBox 
+    class GraphBox : PictureBox 
     {
         private float _Dx = 1F;
         /// <summary>

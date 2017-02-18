@@ -20,7 +20,7 @@ namespace LaboratoryWork
             imageBox.Refresh();
         }
 
-        private void InitializeImageBoxNew(ImageBoxNew MyImageBoxNew)
+        private void InitializeImageBoxNew(GraphBox MyImageBoxNew)
         {
             MyImageBoxNew.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
             MyImageBoxNew.X0_Pol = MyImageBoxNew.Width / 2;

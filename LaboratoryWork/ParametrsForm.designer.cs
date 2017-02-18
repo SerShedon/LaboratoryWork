@@ -89,9 +89,9 @@
             this.декартоваяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.imageBoxNew3 = new ImageBoxNew();
-            this.imageBoxNew2 = new ImageBoxNew();
-            this.imageBoxNew1 = new ImageBoxNew();
+            this.imageBoxNew3 = new GraphBox();
+            this.imageBoxNew2 = new GraphBox();
+            this.imageBoxNew1 = new GraphBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -863,9 +863,9 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private ImageBoxNew imageBoxNew1;
-        private ImageBoxNew imageBoxNew2;
-        private ImageBoxNew imageBoxNew3;
+        private GraphBox imageBoxNew1;
+        private GraphBox imageBoxNew2;
+        private GraphBox imageBoxNew3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;

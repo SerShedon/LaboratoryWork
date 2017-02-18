@@ -65,7 +65,7 @@
     <Compile Include="Grafic1.Designer.cs">
       <DependentUpon>Grafic1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageBoxNew.cs">
+    <Compile Include="GraphBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tets.cs">
@@ -94,8 +94,8 @@
     <EmbeddedResource Include="Grafic1.resx">
       <DependentUpon>Grafic1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageBoxNew.resx">
-      <DependentUpon>ImageBoxNew.cs</DependentUpon>
+    <EmbeddedResource Include="GraphBox.resx">
+      <DependentUpon>GraphBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tets.resx">
       <DependentUpon>Tets.cs</DependentUpon>

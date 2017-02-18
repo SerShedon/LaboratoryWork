@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.imageBox = new ImageBoxNew();
+            this.imageBox = new GraphBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -102,7 +102,7 @@
         }
 
         #endregion
-        private ImageBoxNew imageBox;
+        private GraphBox imageBox;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
