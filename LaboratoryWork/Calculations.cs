@@ -98,31 +98,6 @@ namespace LaboratoryWork
             }
         }
 
-        /// <summary>
-        /// перевод декартовых координат в полярные для отрисовки в деркатовой системе
-        /// </summary>
-        /// <param name="P_actual"></param>
-        /// <param name="P_next"></param>
-        /// <param name="P_actual1"></param>
-        /// <param name="P_next1"></param>
-        public static void TranslateDecInPol(PointF P_actual, PointF P_next, ref PointF P_actual1, ref PointF P_next1)
-        {
-            float X;
-            float Y;
-
-            X = CosInRadians(P_actual.X) * P_actual.Y;
-            Y = SinInRadians(P_actual.X) * P_actual.Y;
-
-            P_actual1.X = -X;
-            P_actual1.Y = -Y;
-
-            X = CosInRadians(P_next.X) * P_next.Y;
-            Y = SinInRadians(P_next.X) * P_next.Y;
-
-            P_next1.X = -X;
-            P_next1.Y = -Y;
-        }
-
         private static Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>> generalFunctionsByNameFunc =
             new Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>>
             {
