@@ -122,31 +122,16 @@ namespace LaboratoryWork
             P_next1.X = -X;
             P_next1.Y = -Y;
         }
-       
 
-        /// <summary>
-        /// Основная функция, которая выбирает, другие функции для просчета значения функции F в точке с аргументом X
-        /// </summary>
-        /// <param name="Q">передавать значение Х</param>
-        /// <param name="TypeFunction">передавать 1, 2 или 3 рисуется 3 разных графика в зависимости от кси E</param>
-        /// <param name="NameFunc">передвать "F_4" функция от фи , "F_Q"функция от тетта или "r" поляризационная характеристика</param>
-        /// <returns>возвращает значение функции в точке X</returns>
-        public static float GeneralFuncForDrawDec(float Q, Enums.TypeFunction TypeFunction, Enums.NameFunc NameFunc)
-        {
-            switch (NameFunc)
+        private static Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>> generalFunctionsByNameFunc =
+            new Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>>
             {
-                case Enums.NameFunc.F_4:
-                    return -Math.Abs(General_F_4_WithOutAbs(Q, TypeFunction));
-                case Enums.NameFunc.F_Q:
-                    return -Math.Abs(General_F_4_WithOutAbs(Q, TypeFunction) * CosInRadians(Q));
-                case Enums.NameFunc.r:
-                    return -PolarCharacteristic(Q, TypeFunction);
-                default:
-                    throw new ArgumentException();
-            }
-        }
+                { Enums.NameFunction.F_4, General_F_4},
+                { Enums.NameFunction.F_Q, General_F_Q},
+                { Enums.NameFunction.r, PolarCharacteristic},
+            };
 
-        private static Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float>>> functionByTypeSpiralAntennasAndTypeFunction = 
+        private static Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float>>> functionByTypeSpiralAntennasAndTypeFunction =
             new Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float>>>
             {
                 {
@@ -170,6 +155,16 @@ namespace LaboratoryWork
             };
 
         /// <summary>
+        /// Основная функция, которая выбирает, другие функции для просчета значения функции F в точке с аргументом X
+        /// </summary>
+        /// <param name="Q">передавать значение Х</param>
+        /// <param name="typeFunction">передавать 1, 2 или 3 рисуется 3 разных графика в зависимости от кси E</param>
+        /// <param name="NameFunc">передвать "F_4" функция от фи , "F_Q"функция от тетта или "r" поляризационная характеристика</param>
+        /// <returns>возвращает значение функции в точке X</returns>
+        public static float GeneralFuncForDrawDec(float Q, Enums.TypeFunction typeFunction, Enums.NameFunction NameFunc)
+            => generalFunctionsByNameFunc[NameFunc](Q, typeFunction);
+
+        /// <summary>
         /// в зависимости от типа спиральных антенн и вида кси (Е_а) выбираются фунции для просчета F от фи, тип спиральных антенн задается в GraficForm имеет значения 1 или 2
         /// </summary>
         /// <param name="x">аргумент функции - (тут)Q</param>
@@ -177,6 +172,12 @@ namespace LaboratoryWork
         /// <returns></returns>
         public static float General_F_4_WithOutAbs(float x, Enums.TypeFunction typeFunction) 
             => functionByTypeSpiralAntennasAndTypeFunction[Consts.TypeSpiralAntennas][typeFunction](E_a(Consts.a, typeFunction), x);
+
+        public static float General_F_4(float x, Enums.TypeFunction typeFunction)
+            => Math.Abs(General_F_4_WithOutAbs(x, typeFunction));
+
+        public static float General_F_Q(float x, Enums.TypeFunction typeFunction)
+            => Math.Abs(General_F_4_WithOutAbs(x, typeFunction) * CosInRadians(x));
 
         // для TypeSpiralAntennas == 1 одиночная спиральная антенна
         public static float FuncSingleSpiralAntenna_E_LessOpt(float E_a1, float Q)

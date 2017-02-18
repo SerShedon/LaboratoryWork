@@ -41,7 +41,7 @@ namespace LaboratoryWork
             MyImageBoxNew.Coef_X_Polar = MyImageBoxNew.Width / 360F;
             MyImageBoxNew.Coef_Y_Polar = MyImageBoxNew.Height / 2F;
             MyImageBoxNew.PenDrawGraph = new Pen(Color.Red, 2);
-            MyImageBoxNew.FunctionForCalculate = x => { return Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunc.F_4); };
+            MyImageBoxNew.FunctionForCalculate = x => { return - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_4); };
         }
         
 

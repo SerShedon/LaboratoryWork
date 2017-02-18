@@ -16,17 +16,17 @@ namespace LaboratoryWork
             GetValuesFromTrackBars();
             //imageBoxNew1
             InitializeImageBoxNew(imageBoxNew1);
-            imageBoxNew1.FunctionForCalculate = x => { return Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunc.F_4); };
+            imageBoxNew1.FunctionForCalculate = - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_4);
 
             //imageBoxNew2
 
             InitializeImageBoxNew(imageBoxNew2);
-            imageBoxNew2.FunctionForCalculate = x => { return Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunc.F_Q); };
+            imageBoxNew2.FunctionForCalculate = - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_Q);
 
             //imageBoxNew3
 
             InitializeImageBoxNew(imageBoxNew3);
-            imageBoxNew3.FunctionForCalculate = x => { return Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunc.r); };
+            imageBoxNew3.FunctionForCalculate = - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.r);
 
         }
         private void InitializeImageBoxNew(ImageBoxNew MyImageBoxNew)
@@ -156,7 +156,7 @@ namespace LaboratoryWork
             
             for (; X <= Xlast; X = X + MyDx)
             {
-                CoefY = Calculations.GeneralFuncForDrawDec(X, Consts.TypeFunctions, Enums.NameFunc.F_4);
+                CoefY = Calculations.GeneralFuncForDrawDec(X, Consts.TypeFunctions, Enums.NameFunction.F_4);
                 if (Ymax > CoefY)
                 {
                     Ymax = CoefY;
