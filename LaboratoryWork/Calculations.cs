@@ -10,10 +10,7 @@ namespace LaboratoryWork
 {
     class Calculations
     {
-        //перевод частоты f из мегагерц в герцы
-        /// <summary>
-        /// /ngynt
-        /// </summary>
+        //перевод частоты f из мегагерц в герцы        
         private static float Pi = (float) Math.PI;//для удобства
         private static float d_f = Consts.d_f / Consts.f;//d_f и присвоение первоначального значения, позже для обсчета будет вызываться функция My_d_f
 //для вывода на форме графиков - коэффициентов
@@ -64,8 +61,8 @@ namespace LaboratoryWork
         public static void SetCoefficients()
         {
             Consts.L = 3F * (float)Math.Pow(10, 8) / f;
-            Consts.S_a_f = Consts.L * Sin(Consts.a) ;
-            Consts.A_a_f = Consts.L * Cos(Consts.a) / (2F * Pi);
+            Consts.S_a_f = Consts.L * SinInRadians(Consts.a) ;
+            Consts.A_a_f = Consts.L * CosInRadians(Consts.a) / (2F * Pi);
         }
         /// <summary>
         /// процедура для нахождения точки с координатами х и у в декартовой системе, которая необходима для рисования радиуса заданной длинны на определенном угле в полярной системе координат
@@ -113,31 +110,19 @@ namespace LaboratoryWork
             float X;
             float Y;
 
-            X = Cos(P_actual.X) * P_actual.Y;
-            Y = Sin(P_actual.X) * P_actual.Y;
+            X = CosInRadians(P_actual.X) * P_actual.Y;
+            Y = SinInRadians(P_actual.X) * P_actual.Y;
 
             P_actual1.X = -X;
             P_actual1.Y = -Y;
 
-            X = Cos(P_next.X) * P_next.Y;
-            Y = Sin(P_next.X) * P_next.Y;
+            X = CosInRadians(P_next.X) * P_next.Y;
+            Y = SinInRadians(P_next.X) * P_next.Y;
 
             P_next1.X = -X;
             P_next1.Y = -Y;
         }
-        /// <summary>
-        /// перевод декартовых координат в полярные для отрисовки в деркатовой системе
-        /// </summary>
-        /// <param name="pointDec"></param>
-        /// <returns></returns>
-        public static PointF TranslateDecInPol(PointF pointDec)
-        {
-            var pointPol = new PointF();
-
-            pointPol.X = -Cos(pointDec.X) * pointDec.Y;
-            pointPol.Y = -Sin(pointDec.X) * pointDec.Y;
-            return pointPol;
-        }
+       
 
         /// <summary>
         /// Основная функция, которая выбирает, другие функции для просчета значения функции F в точке с аргументом X
@@ -148,136 +133,70 @@ namespace LaboratoryWork
         /// <returns>возвращает значение функции в точке X</returns>
         public static float GeneralFuncForDrawDec(float Q, Enums.TypeFunction TypeFunction, Enums.NameFunc NameFunc)
         {
-            float F_4 = General_F_4_WithOutAbs(Q, TypeFunction);
-            float F_4_abs = Math.Abs(F_4);
-            if (NameFunc == Enums.NameFunc.F_4)
+            switch (NameFunc)
             {
-                return -F_4_abs;
+                case Enums.NameFunc.F_4:
+                    return -Math.Abs(General_F_4_WithOutAbs(Q, TypeFunction));
+                case Enums.NameFunc.F_Q:
+                    return -Math.Abs(General_F_4_WithOutAbs(Q, TypeFunction) * CosInRadians(Q));
+                case Enums.NameFunc.r:
+                    return -PolarCharacteristic(Q, TypeFunction);
+                default:
+                    throw new ArgumentException();
             }
-
-
-            float F_Q_abs = Math.Abs(F_4 * Cos(Q));
-            if (NameFunc == Enums.NameFunc.F_Q)
-            {
-                return -F_Q_abs;
-            }
-
-            if (NameFunc == Enums.NameFunc.r)
-            {
-                return -PolarCharacteristic(Q, TypeFunction);
-            }
-            return 0;
         }
+
+        private static Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float>>> functionByTypeSpiralAntennasAndTypeFunction = 
+            new Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float>>>
+            {
+                {
+                    Enums.TypeSpiralAntennas.Single,
+                    new Dictionary<Enums.TypeFunction, Func<float, float, float>>
+                    {
+                        { Enums.TypeFunction.E_LessOpt, FuncSingleSpiralAntenna_E_LessOpt },
+                        { Enums.TypeFunction.E_Opt, FuncSingleSpiralAntenna_E_Opt },
+                        { Enums.TypeFunction.E_Crit, FuncSingleSpiralAntenna_E_Crit },
+                    }
+                },
+                {
+                    Enums.TypeSpiralAntennas.System,
+                    new Dictionary<Enums.TypeFunction, Func<float, float, float>>
+                    {
+                        { Enums.TypeFunction.E_LessOpt, FuncSystemSpiralAntennas_E_LessOpt },
+                        { Enums.TypeFunction.E_Opt, FuncSystemSpiralAntennas_E_Opt },
+                        { Enums.TypeFunction.E_Crit, FuncSystemSpiralAntennas_E_Crit },
+                    }
+                }
+            };
+
         /// <summary>
         /// в зависимости от типа спиральных антенн и вида кси (Е_а) выбираются фунции для просчета F от фи, тип спиральных антенн задается в GraficForm имеет значения 1 или 2
         /// </summary>
         /// <param name="x">аргумент функции - (тут)Q</param>
-        /// <param name="TypeFunction">тип функции в зависимости от вида кси (Е_а) принимает значение 1, 2 или 3</param>
+        /// <param name="typeFunction">тип функции в зависимости от вида кси (Е_а) принимает значение 1, 2 или 3</param>
         /// <returns></returns>
-        public static float General_F_4_WithOutAbs(float x, Enums.TypeFunction TypeFunction)
-        {
-            float F_4 = 0;
-            if (Consts.TypeSpiralAntennas == Enums.TypeSpiralAntennas.First)
-            {
-                switch (TypeFunction)
-                {
-                    case Enums.TypeFunction.First:
-                        F_4 = FuncSingleSpiralAntenna_E_LessOpt(x);
-                        break;
-                    case Enums.TypeFunction.Second:
-                        F_4 = FuncSingleSpiralAntenna_E_Opt(x);
-                        break;
-                    case Enums.TypeFunction.Third:
-                        F_4 = FuncSingleSpiralAntenna_E_Crit(x);
-                        break;
-                    default:
-                        MessageBox.Show("не верное переданное значение TypeFunction в функцию General_F_4_WithOutAbs");
-                        break;
-                }
-            }
-            else
-                if (Consts.TypeSpiralAntennas == Enums.TypeSpiralAntennas.Second)
-                {
-                    switch (TypeFunction)
-                    {
-                        case Enums.TypeFunction.First:
-                            F_4 = FuncSystemSpiralAntennas_E_LessOpt(x);
-                            break;
-                        case Enums.TypeFunction.Second:
-                            F_4 = FuncSystemSpiralAntennas_E_Opt(x);
-                            break;
-                        case Enums.TypeFunction.Third:
-                            F_4 = FuncSystemSpiralAntennas_E_Crit(x);
-                            break;
-                        default:
-                            MessageBox.Show("не верное переданное значение TypeFunction в функцию General_F_4_WithOutAbs");
-                            break;
-                    }
-                }
-                else
-                {
-                    //MessageBox.Show("переменная TypeSpiralAntennas имеет не верное значение");
-                }
-            return F_4;
-        }
+        public static float General_F_4_WithOutAbs(float x, Enums.TypeFunction typeFunction) 
+            => functionByTypeSpiralAntennasAndTypeFunction[Consts.TypeSpiralAntennas][typeFunction](E_a(Consts.a, typeFunction), x);
+
         // для TypeSpiralAntennas == 1 одиночная спиральная антенна
-        public static float FuncSingleSpiralAntenna_E_LessOpt(float Q)
-        {
-            //коэффициент замеделния
-            float E_a1 = E_a(Consts.a, 1);
+        public static float FuncSingleSpiralAntenna_E_LessOpt(float E_a1, float Q)
+            => 1F / Consts.N * FuncInside(E_a1, Q);
 
-            float Func_F = 1F / Consts.N * FuncInside(E_a1, Q);
+        public static float FuncSingleSpiralAntenna_E_Opt(float E_a1, float Q)
+            => 1F / K(E_a1, Q) * FuncInside(E_a1, Q);
 
-            return Func_F;
-        }
-
-        public static float FuncSingleSpiralAntenna_E_Opt(float Q)
-        {
-            //коэффициент замеделния
-            float E_a1 = E_a(Consts.a, 2);
-
-            float Func_F = 1F / K(E_a1, Q) * FuncInside(E_a1, Q);
-            return Func_F;
-        }
-
-        public static float FuncSingleSpiralAntenna_E_Crit(float Q)
-        {
-            //коэффициент замеделния
-            float E_a1 = E_a(Consts.a, 3);
-
-            float Func_F = FuncInside(E_a1, Q);
-            return Func_F;
-        }
+        public static float FuncSingleSpiralAntenna_E_Crit(float E_a1, float Q)
+            => FuncInside(E_a1, Q);
 
         // для TypeSpiralAntennas == 1 системы спиральных антенн
-        public static float FuncSystemSpiralAntennas_E_LessOpt(float Q)
-        {
-            //коэффициент замеделния
-            float E_a1 = E_a(Consts.a, 1);
+        public static float FuncSystemSpiralAntennas_E_LessOpt(float E_a1, float Q)
+            => 1F / Consts.N * FuncInside(E_a1, Q) * Fc_QfM(Q);
 
-            float Func_F = 1F / Consts.N * FuncInside(E_a1, Q) * Fc_QfM_(Q);
+        public static float FuncSystemSpiralAntennas_E_Opt(float E_a1, float Q)
+            => 1F / K(E_a1, Q) * FuncInside(E_a1, Q) * Fc_QfM(Q);
 
-            return Func_F;
-        }
-
-        public static float FuncSystemSpiralAntennas_E_Opt(float Q)
-        {
-            //коэффициент замеделния
-            float E_a1 = E_a(Consts.a, 2);
-
-            float Func_F = 1F / K(E_a1, Q) * FuncInside(E_a1, Q) * Fc_QfM_(Q);
-
-            return Func_F;
-        }
-
-        public static float FuncSystemSpiralAntennas_E_Crit(float Q)
-        {
-            //коэффициент замеделния
-            float E_a1 = E_a(Consts.a, 3);
-
-            float Func_F = FuncInside(E_a1, Q) * Fc_QfM_(Q);
-            return Func_F;
-        }
+        public static float FuncSystemSpiralAntennas_E_Crit(float E_a1, float Q)
+            => FuncInside(E_a1, Q) * Fc_QfM(Q);
 
         /// <summary>
         /// расчет кси в зависимости от вида фукции 
@@ -285,27 +204,19 @@ namespace LaboratoryWork
         /// <param name="x">аргумент функции</param>
         /// <param name="TypeE_a">передается 1(если кси меньше оптимального), 2(кси оптимальный) или 3(если кси критический) </param>
         /// <returns></returns>
-        private static float E_a(float x, int TypeE_a)
+        private static float E_a(float x, Enums.TypeFunction TypeE_a)
         {
-            float E = 0F;
             switch (TypeE_a)
-            {                    
-                case 1:                    
-                    E = Sin(x);
-                    break;                    
-                case 2:                    
-                    E = 1F+1F/(2F* Consts.N)+Sin(x);
-                    break;                    
-                case 3:                   
-                    E = 1 / Consts.N + Sin(x);
-                    break;
+            {
+                case Enums.TypeFunction.E_LessOpt:
+                    return SinInRadians(x);
+                case Enums.TypeFunction.E_Opt:
+                    return 1F + 1F / (2F * Consts.N) + SinInRadians(x);
+                case Enums.TypeFunction.E_Crit:
+                    return 1f / Consts.N + SinInRadians(x);
                 default:
-                    Console.WriteLine("Default case");
-                    break;                    
+                    throw new ArgumentException();
             }
-            
-            return E;
-
         }
         /// <summary>
         /// основная часть математической функции
@@ -313,17 +224,17 @@ namespace LaboratoryWork
         /// <param name="E_a">передаем кси </param>
         /// <param name="Q">аргумент математической функции</param>
         /// <returns></returns>
- 
+
         private static float FuncInside(float E_a, float Q)
         {
-            double FuncInsideUp = Math.Sin (Consts.N * Pi * (E_a - Sin(Consts.a) * Cos(Q)));
-            double FuncInsideDown = Math.Sin (Pi * (E_a - Sin(Consts.a) * Cos(Q)));            
-            for (float Dx = GraficForm.MyDx; FuncInsideDown == 0; Dx++)
+            double FuncInsideUp = Math.Sin (Consts.N * Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q)));
+            double FuncInsideDown = Math.Sin (Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q)));            
+            for (float Dx = ParametrsForm.MyDx; FuncInsideDown == 0; Dx++)
             {
-                FuncInsideUp = Math.Sin(Consts.N * Pi * (E_a - Sin(Consts.a) * Cos(Q + GraficForm.MyDx)));
-                FuncInsideDown = Math.Sin(Pi * (E_a - Sin(Consts.a) * Cos(Q + GraficForm.MyDx)));
+                FuncInsideUp = Math.Sin(Consts.N * Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q + ParametrsForm.MyDx)));
+                FuncInsideDown = Math.Sin(Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q + ParametrsForm.MyDx)));
                 //выход из цикличности, если число проходов больше 100
-                if (Dx == GraficForm.MyDx * 100)
+                if (Dx == ParametrsForm.MyDx * 100)
                 {
                     FuncInsideDown = 0.01F;
                     MessageBox.Show("Возможна ошибка в отрисовке графиков, зациклилась функция FuncInside, число циклов 100");
@@ -341,8 +252,8 @@ namespace LaboratoryWork
         /// <returns></returns>
         private static float K(float E_a, float Q)
         {
-            float K_Up = (float)Math.Sin(Consts.N / 2F * (2F * Pi * Sin(Consts.a) - 2F * Pi * E_a));
-            float K_Down = (float)Math.Sin(1F / 2F * (2F * Pi * Sin(Consts.a) - 2F * Pi * E_a));
+            float K_Up = (float)Math.Sin(Consts.N / 2F * (2F * Pi * SinInRadians(Consts.a) - 2F * Pi * E_a));
+            float K_Down = (float)Math.Sin(1F / 2F * (2F * Pi * SinInRadians(Consts.a) - 2F * Pi * E_a));
             return K_Up / K_Down;
         }
 
@@ -351,26 +262,23 @@ namespace LaboratoryWork
         /// </summary>
         /// <param name="Q">аргумент математической функции</param>
         /// <returns></returns>
-        private static float Fc_QfM_(float Q)
+        private static float Fc_QfM(float Q)
         {
-            float Fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * Sin(Q) / 2F);
-            float Fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * Sin(Q) / 2F);
+            float Fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * SinInRadians(Q) / 2F);
+            float Fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * SinInRadians(Q) / 2F);
             
-            for (float Dx = GraficForm.MyDx; Fc_QfM_Down == 0; Dx++)
+            for (float Dx = ParametrsForm.MyDx; Fc_QfM_Down == 0; Dx++)
             {
-                Fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * Sin(Q - Dx) / 2F);
-                Fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * Sin(Q - Dx) / 2F);
+                Fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * SinInRadians(Q - Dx) / 2F);
+                Fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * SinInRadians(Q - Dx) / 2F);
                 //выход из цикличности, если число проходов больше 100
-                if (Dx == GraficForm.MyDx * 100)
+                if (Dx == ParametrsForm.MyDx * 100)
                 {
                     Fc_QfM_Down = 0.01F;
                     MessageBox.Show("Возможна ошибка в отрисовке графиков, зациклилась функция Fc_QfM_, число циклов 100");
                 }
             }  
-            
-
             return Fc_QfM_Up / Fc_QfM_Down;
-
         }
         /// <summary>
         /// математическая функция для просчета поляризационной характеристики
@@ -382,39 +290,22 @@ namespace LaboratoryWork
         {
             float F_4 = General_F_4_WithOutAbs(Consts.Q, TypeFunction);
             float F_4_abs = Math.Abs(F_4);
-            float F_Q_abs = Math.Abs(F_4 * Cos(Consts.Q));
+            float F_Q_abs = Math.Abs(F_4 * CosInRadians(Consts.Q));
 
             float a = 1;
             if (F_Q_abs == 0)
-            {
                 F_Q_abs = 0.0001F;
-            }
             float m = F_4_abs / F_Q_abs;
 
             if (m > 1000)
-            {
                 m = 1000;
-            }
 
             float b = m * a;
-            float e;
-            if (b * b > 1)
-            {
-                e = (float)Math.Sqrt(1 - a * a / (b * b));
-            }
-            else
-            {
-                e = (float)Math.Sqrt(0.1);
-            }
+            float e = b * b > 1 ? (float)Math.Sqrt(1 - a * a / (b * b)) : (float)Math.Sqrt(0.1);            
 
-            float r;
-
-            r = b;//для защиты от отрицательного подкоренного выражения
-
-            if ((e * e * Cos(Fi) * Cos(Fi)) <= 1)
-            {
-                r = b / (float)Math.Sqrt(1 - e * e * Cos(Fi) * Cos(Fi));
-            }
+            float r = e * e * CosInRadians(Fi) * CosInRadians(Fi) <= 1 //для защиты от отрицательного подкоренного выражения
+                ? b / (float)Math.Sqrt(1 - e * e * CosInRadians(Fi) * CosInRadians(Fi))
+                : b;
 
             return r;
         }
@@ -431,45 +322,34 @@ namespace LaboratoryWork
             double Atan2 = 0;
             
             if (x > 0 && y>=0) 
-            {
                 Atan2 = Math.Atan(y / x);
-            }
 
             if (x > 0 && y < 0)
-            {
                 Atan2 = Math.Atan(y / x) + 2 * Pi;
-            }
 
             if (x < 0)
-            {
-                Atan2 = Math.Atan(y / x) + Pi;   
-            }
+                Atan2 = Math.Atan(y / x) + Pi;
             
             if (x == 0) 
             {
                 if (y < 0)
-                {
                     Atan2 = Pi + Pi / 2;
-                }
                 else
-                {
                     Atan2 = Pi - Pi / 2;
-                }
             }
+
             if (x == 0 && y == 0)
-            {
                 Atan2 = 0;
-            }
-            return Atan2 = Atan2 / Math.PI*180;
+            return Atan2 / Math.PI*180;
         }
         /// <summary>
         /// функция Cos возвращающая флот и считающая в градусах, а не радианах
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        private static float Cos (float x)
+        private static float CosInRadians (float x)
         {
-            return (float)Math.Cos(x / 180F * Pi);
+            return (float)Math.Cos(x / 180F * Math.PI);
         }
 
         /// <summary>
@@ -477,7 +357,7 @@ namespace LaboratoryWork
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        private static float Sin(float x)
+        private static float SinInRadians(float x)
         {
             return (float)Math.Sin(x / 180F * Math.PI);
         }
