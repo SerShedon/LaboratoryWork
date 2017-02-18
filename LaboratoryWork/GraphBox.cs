@@ -303,7 +303,7 @@ namespace LaboratoryWork
             PointF pointActForPaint;
             PointF pointNextForPaint;
 
-            for (; pointDecAct.X < xLast; pointDecNext.X = pointDecAct.X + Dx, pointDecAct.X = pointDecNext.X, pointDecAct.Y = pointDecNext.Y)
+            for (; pointDecAct.X < xLast; pointDecAct.X = pointDecNext.X, pointDecAct.Y = pointDecNext.Y, pointDecNext.X = pointDecAct.X + Dx)
             {
                 pointDecNext.Y = funcForCalculate(pointDecNext.X);
                 if (TypeCoordinateSystem == Enums.TypeCoordinateSystem.Polar)
