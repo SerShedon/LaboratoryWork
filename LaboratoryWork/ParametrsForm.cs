@@ -266,46 +266,16 @@ namespace LaboratoryWork
 
             if (imageBoxNew.CoordinateSystem == Enums.TypeCoordinateSystem.Cartesian)
             {
-                lb1.Text = "По оси X " + CoordinateX(e.X, imageBoxNew.Width, imageBoxNew.x0, CoefficientX).ToString();
-                lb2.Text = "По оси Y " + CoordinateY(e.Y, imageBoxNew.Height, imageBoxNew.y0, CoefficientY).ToString("0.00");
+                lb1.Text = "По оси X " + imageBoxNew.CoordinateX(e.X, imageBoxNew.x0, CoefficientX).ToString();
+                lb2.Text = "По оси Y " + imageBoxNew.CoordinateY(e.Y, imageBoxNew.y0, CoefficientY).ToString("0.00");
             }
             if (imageBoxNew.CoordinateSystem == Enums.TypeCoordinateSystem.Polar)
             {
-                lb1.Text = TextForLabel1 + " " + CoordinateR(imageBoxNew.ClientRectangle, e, imageBoxNew.x0, imageBoxNew.y0, CoefficientY).ToString("0.00");
-                lb2.Text = TextForLabel2 + " " + CoordinateFi(imageBoxNew.ClientRectangle, e, imageBoxNew.x0, imageBoxNew.y0).ToString("0.00") + ", град";
+                lb1.Text = TextForLabel1 + " " + imageBoxNew.CoordinateR(e.X, e.Y, imageBoxNew.x0, imageBoxNew.y0, CoefficientY).ToString("0.00");
+                lb2.Text = TextForLabel2 + " " + imageBoxNew.CoordinateFi(e.X, e.Y, imageBoxNew.x0, imageBoxNew.y0).ToString("0.00") + ", град";
             }
         }
 
-        public int CoordinateX(int LocationX, int PictureBoxWidth, int x0, float Coef_X)
-        {
-            return (int)((LocationX - x0) / Coef_X);
-        }
-        public float CoordinateY(int LocationY, int PictureBoxHeight, int y0, float Coef_Y)
-        {
-            return -(LocationY - y0) / Coef_Y;
-        }
-
-        public float CoordinateR(Rectangle PictureBoxRectangle, MouseEventArgs e, int x0, int y0, float Coef_Y)
-        {
-            float x = ((e.X - x0) / Coef_Y);
-            float y = (-(e.Y - y0) / Coef_Y);
-
-            //по формуле R = (X^2+Y^2)^(1/2)
-            return (float)(Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2)));
-        }
-
-        public float CoordinateFi(Rectangle PictureBoxRectangle, MouseEventArgs e, int x0, int y0)
-        {
-            //
-            float Y = -(e.Y - y0);
-            float X = (e.X - x0);
-
-            float fi = (float)(Math.Atan2(Y, X) / Math.PI * 180);
-            return fi<0?180+(180-Math.Abs(fi)): fi;
-        }
-
-        
-    
 
         #endregion
         //pictureBox_MouseMove 
@@ -313,7 +283,7 @@ namespace LaboratoryWork
         private void imageBoxNew1_MouseMove(object sender, MouseEventArgs e)
         {
             GetCoefficientsForImageBoxNew1();
-            ShowCoordinateInLabel(label6, label7, "Значение ДН по радиальному направлению", "Полярный угол", imageBoxNew1, e, Coef_X1, Coef_Y1);
+            ShowCoordinateInLabel(lblFirstCoordinate, lblSecondtCoordinate, "Значение ДН по радиальному направлению", "Полярный угол", imageBoxNew1, e, Coef_X1, Coef_Y1);
         }
 
         private void imageBoxNew2_MouseMove(object sender, MouseEventArgs e)

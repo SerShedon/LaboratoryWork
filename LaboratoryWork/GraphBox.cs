@@ -336,6 +336,50 @@ namespace LaboratoryWork
         
         private static float SinInRadians(float x) => (float)Math.Sin(x / 180F * Math.PI);
 
+        public float GetFirstCoordinate(int locationX, int locationY)
+        {
+            if (CoordinateSystem == Enums.TypeCoordinateSystem.Cartesian)
+                return CoordinateX(locationX, x0, CoefficientX);
+            else
+                return CoordinateR(locationX, locationY, x0, y0, CoefficientY);
+        }
+
+        public float GetSecondCoordinate(int locationX, int locationY)
+        {
+            if (CoordinateSystem == Enums.TypeCoordinateSystem.Cartesian)
+                return CoordinateX(locationX, x0, CoefficientX);
+            else
+                return CoordinateFi(locationX, locationY, x0, y0);
+        }
+
+
+        public float CoordinateX(int LocationX, int x0, float Coef_X)
+        {
+            return (LocationX - x0) / Coef_X;
+        }
+        public float CoordinateY(int LocationY, int y0, float Coef_Y)
+        {
+            return -(LocationY - y0) / Coef_Y;
+        }
+
+        public float CoordinateR(int locationX, int locationY, int x0, int y0, float Coef_Y)
+        {
+            float x = (locationX - x0) / Coef_Y;
+            float y = -(locationY - y0) / Coef_Y;
+
+            //по формуле R = (X^2+Y^2)^(1/2)
+            return (float)(Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2)));
+        }
+
+        public float CoordinateFi(int locationX, int locationY, int x0, int y0)
+        {
+            float x = locationX - x0;
+            float y = -(locationY - y0);
+
+            float fi = (float)(Math.Atan2(y, x) / Math.PI * 180);
+            return fi < 0 ? 180 + (180 - Math.Abs(fi)) : fi;
+        }
+
         private void InitializeComponent()
         {
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
