@@ -675,7 +675,7 @@
             this.imageBoxNew3.Coef_X_Polar = 0F;
             this.imageBoxNew3.Coef_Y_Cartesian = 0F;
             this.imageBoxNew3.Coef_Y_Polar = 0F;
-            this.imageBoxNew3.CoordinateSystem = LaboratoryWork.Enums.TypeCoordinateSystem.Cartesian;
+            this.imageBoxNew3.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
             this.imageBoxNew3.CountLineX = 0;
             this.imageBoxNew3.CountLineY = 0;
             this.imageBoxNew3.Degrees = 0;
@@ -701,7 +701,7 @@
             this.imageBoxNew2.Coef_X_Polar = 0F;
             this.imageBoxNew2.Coef_Y_Cartesian = 0F;
             this.imageBoxNew2.Coef_Y_Polar = 0F;
-            this.imageBoxNew2.CoordinateSystem = LaboratoryWork.Enums.TypeCoordinateSystem.Cartesian;
+            this.imageBoxNew2.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
             this.imageBoxNew2.CountLineX = 0;
             this.imageBoxNew2.CountLineY = 0;
             this.imageBoxNew2.Degrees = 0;
@@ -727,7 +727,7 @@
             this.imageBoxNew1.Coef_X_Polar = 0F;
             this.imageBoxNew1.Coef_Y_Cartesian = 0F;
             this.imageBoxNew1.Coef_Y_Polar = 0F;
-            this.imageBoxNew1.CoordinateSystem = LaboratoryWork.Enums.TypeCoordinateSystem.Cartesian;
+            this.imageBoxNew1.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
             this.imageBoxNew1.CountLineX = 0;
             this.imageBoxNew1.CountLineY = 0;
             this.imageBoxNew1.Degrees = 0;
