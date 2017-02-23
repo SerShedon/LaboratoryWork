@@ -300,7 +300,8 @@ namespace LaboratoryWork
             float Y = -(e.Y - y0);
             float X = (e.X - x0);
 
-            return (float)(Calculations.Atan2(Y, X));
+            float fi = (float)(Math.Atan2(Y, X) / Math.PI * 180);
+            return fi<0?180+(180-Math.Abs(fi)): fi;
         }
 
         
