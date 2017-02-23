@@ -7,6 +7,11 @@ namespace LaboratoryWork
 {
     class GraphBox : PictureBox 
     {
+        public GraphBox()
+        {
+            FunctionForCalculate = x => 0;
+            TypeCoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
+        }
         private float _Dx = 1F;
         /// <summary>
         /// шаг
@@ -64,7 +69,7 @@ namespace LaboratoryWork
 
         private int Height1;
 
-        LaboratoryWork.Enums.TypeCoordinateSystem TypeCoordinateSystem;
+        Enums.TypeCoordinateSystem TypeCoordinateSystem;
 
         public int HeightNew
         {

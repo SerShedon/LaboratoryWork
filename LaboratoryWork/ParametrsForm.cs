@@ -483,7 +483,31 @@ namespace LaboratoryWork
             imageBoxNew2.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
             RefreshPictureBoxs();
         }
-        
+        private GraphFrom GraphFrom1;
+        private GraphFrom GraphFrom2;
+        private void btnGraphForm1_Click(object sender, EventArgs e)
+        {
+            GraphFrom1 = new GraphFrom();
+            GraphFrom1.Show();
+            GraphFrom1.SetFunctionForCalculate((x) => { return -Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_4); });
+            GraphFrom1.TextForFirstCartesianCoordinate = "По оси X {0}";
+            GraphFrom1.TextForSecondCartesianCoordinate = "По оси Y {0}";
+            GraphFrom1.TextForFirstPolarCoordinate = "Значение ДН по радиальному направлению {0}";
+            GraphFrom1.TextForSecondPolarCoordinate = "Полярный угол {0} град";
+            GraphFrom1.NameFunction = "Нормированная ДН в плоскости, перпендикулярной витку";
+        }
+
+        private void btnGraphForm2_Click(object sender, EventArgs e)
+        {
+            GraphFrom2 = new GraphFrom();
+            GraphFrom2.Show();
+            GraphFrom2.SetFunctionForCalculate((x) => { return -Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_Q); });
+            GraphFrom2.TextForFirstCartesianCoordinate = "По оси X {0}";
+            GraphFrom2.TextForSecondCartesianCoordinate = "По оси Y {0}";
+            GraphFrom2.TextForFirstPolarCoordinate = "Значение ДН по радиальному направлению {0}";
+            GraphFrom2.TextForSecondPolarCoordinate = "Полярный угол {0} град";
+            GraphFrom2.NameFunction = "Нормированная ДН в плоскости, содержащей витки";
+        }
     }
 }
 

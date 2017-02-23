@@ -1,6 +1,6 @@
 ﻿namespace LaboratoryWork
 {
-    partial class Grafic1
+    partial class GraphFrom
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.imageBox = new GraphBox();
-            this.label23 = new System.Windows.Forms.Label();
+            this.lblNameFunction = new System.Windows.Forms.Label();
             this.lblSecondCoordinate = new System.Windows.Forms.Label();
             this.lblFirstCoordinate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
@@ -61,11 +61,11 @@
             // 
             // label23
             // 
-            this.label23.Location = new System.Drawing.Point(36, 9);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(317, 15);
-            this.label23.TabIndex = 52;
-            this.label23.Text = "Нормированная ДН в плоскости, перпендикулярной витку";
+            this.lblNameFunction.Location = new System.Drawing.Point(36, 9);
+            this.lblNameFunction.Name = "label23";
+            this.lblNameFunction.Size = new System.Drawing.Size(317, 15);
+            this.lblNameFunction.TabIndex = 52;
+            this.lblNameFunction.Text = "Нормированная ДН в плоскости, перпендикулярной витку";
             // 
             // lblSecondCoordinate
             // 
@@ -90,7 +90,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 353);
-            this.Controls.Add(this.label23);
+            this.Controls.Add(this.lblNameFunction);
             this.Controls.Add(this.lblSecondCoordinate);
             this.Controls.Add(this.lblFirstCoordinate);
             this.Controls.Add(this.imageBox);
@@ -104,7 +104,7 @@
 
         #endregion
         private GraphBox imageBox;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblNameFunction;
         private System.Windows.Forms.Label lblSecondCoordinate;
         private System.Windows.Forms.Label lblFirstCoordinate;
     }

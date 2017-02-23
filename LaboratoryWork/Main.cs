@@ -101,12 +101,5 @@ namespace LaboratoryWork
         {
             CommonHelper.MyHelp(this, "4.htm");
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-            Form MyGrafigForm1 = new Grafic1();
-            MyGrafigForm1.Show();
-        }
     }
 }

@@ -59,11 +59,11 @@
     <Compile Include="Consts.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Events.cs" />
-    <Compile Include="Grafic1.cs">
+    <Compile Include="GraphFrom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Grafic1.Designer.cs">
-      <DependentUpon>Grafic1.cs</DependentUpon>
+    <Compile Include="GraphFrom.Designer.cs">
+      <DependentUpon>GraphFrom.cs</DependentUpon>
     </Compile>
     <Compile Include="GraphBox.cs">
       <SubType>Component</SubType>
@@ -91,8 +91,8 @@
     <EmbeddedResource Include="BootForm.resx">
       <DependentUpon>BootForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Grafic1.resx">
-      <DependentUpon>Grafic1.cs</DependentUpon>
+    <EmbeddedResource Include="GraphFrom.resx">
+      <DependentUpon>GraphFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GraphBox.resx">
       <DependentUpon>GraphBox.cs</DependentUpon>
@@ -102,6 +102,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ParametrsForm.resx">
       <DependentUpon>ParametrsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

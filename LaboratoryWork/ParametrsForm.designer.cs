@@ -92,6 +92,8 @@
             this.imageBoxNew3 = new GraphBox();
             this.imageBoxNew2 = new GraphBox();
             this.imageBoxNew1 = new GraphBox();
+            this.btnGraphForm1 = new System.Windows.Forms.Button();
+            this.btnGraphForm2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -258,20 +260,20 @@
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // label6
+            // lblFirstCoordinate
             // 
             this.lblFirstCoordinate.AutoSize = true;
             this.lblFirstCoordinate.Location = new System.Drawing.Point(648, 51);
-            this.lblFirstCoordinate.Name = "label6";
+            this.lblFirstCoordinate.Name = "lblFirstCoordinate";
             this.lblFirstCoordinate.Size = new System.Drawing.Size(231, 13);
             this.lblFirstCoordinate.TabIndex = 17;
             this.lblFirstCoordinate.Text = "Значение ДН по радиальному направлению";
             // 
-            // label7
+            // lblSecondtCoordinate
             // 
             this.lblSecondtCoordinate.AutoSize = true;
             this.lblSecondtCoordinate.Location = new System.Drawing.Point(925, 52);
-            this.lblSecondtCoordinate.Name = "label7";
+            this.lblSecondtCoordinate.Name = "lblSecondtCoordinate";
             this.lblSecondtCoordinate.Size = new System.Drawing.Size(84, 13);
             this.lblSecondtCoordinate.TabIndex = 18;
             this.lblSecondtCoordinate.Text = "Полярный угол";
@@ -677,6 +679,7 @@
             this.imageBoxNew3.CountLineX = 0;
             this.imageBoxNew3.CountLineY = 0;
             this.imageBoxNew3.Degrees = 0;
+            this.imageBoxNew3.Dx = 1F;
             this.imageBoxNew3.HeightNew = 0;
             this.imageBoxNew3.Location = new System.Drawing.Point(9, 467);
             this.imageBoxNew3.Name = "imageBoxNew3";
@@ -702,6 +705,7 @@
             this.imageBoxNew2.CountLineX = 0;
             this.imageBoxNew2.CountLineY = 0;
             this.imageBoxNew2.Degrees = 0;
+            this.imageBoxNew2.Dx = 1F;
             this.imageBoxNew2.HeightNew = 0;
             this.imageBoxNew2.Location = new System.Drawing.Point(523, 467);
             this.imageBoxNew2.Name = "imageBoxNew2";
@@ -727,6 +731,7 @@
             this.imageBoxNew1.CountLineX = 0;
             this.imageBoxNew1.CountLineY = 0;
             this.imageBoxNew1.Degrees = 0;
+            this.imageBoxNew1.Dx = 1F;
             this.imageBoxNew1.HeightNew = 0;
             this.imageBoxNew1.Location = new System.Drawing.Point(523, 68);
             this.imageBoxNew1.Name = "imageBoxNew1";
@@ -741,13 +746,35 @@
             this.imageBoxNew1.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBoxNew1_Paint);
             this.imageBoxNew1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBoxNew1_MouseMove);
             // 
-            // GraficForm
+            // btnGraphForm1
+            // 
+            this.btnGraphForm1.Location = new System.Drawing.Point(277, 344);
+            this.btnGraphForm1.Name = "btnGraphForm1";
+            this.btnGraphForm1.Size = new System.Drawing.Size(240, 38);
+            this.btnGraphForm1.TabIndex = 55;
+            this.btnGraphForm1.Text = "Нормированная ДН в плоскости, перпендикулярной витку";
+            this.btnGraphForm1.UseVisualStyleBackColor = true;
+            this.btnGraphForm1.Click += new System.EventHandler(this.btnGraphForm1_Click);
+            // 
+            // btnGraphForm2
+            // 
+            this.btnGraphForm2.Location = new System.Drawing.Point(307, 388);
+            this.btnGraphForm2.Name = "btnGraphForm2";
+            this.btnGraphForm2.Size = new System.Drawing.Size(192, 38);
+            this.btnGraphForm2.TabIndex = 56;
+            this.btnGraphForm2.Text = "Нормированная ДН в плоскости, содержащей витки";
+            this.btnGraphForm2.UseVisualStyleBackColor = true;
+            this.btnGraphForm2.Click += new System.EventHandler(this.btnGraphForm2_Click);
+            // 
+            // ParametrsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.MenuBar;
             this.ClientSize = new System.Drawing.Size(1132, 741);
+            this.Controls.Add(this.btnGraphForm2);
+            this.Controls.Add(this.btnGraphForm1);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.label25);
@@ -800,7 +827,7 @@
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(1148, 726);
-            this.Name = "GraficForm";
+            this.Name = "ParametrsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Графики";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParametrsFormClosing);
@@ -891,6 +918,8 @@
         private System.Windows.Forms.ToolStripMenuItem полярнаяToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem декартоваяToolStripMenuItem;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button btnGraphForm1;
+        private System.Windows.Forms.Button btnGraphForm2;
     }
 }
 
