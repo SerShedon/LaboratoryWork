@@ -38,29 +38,6 @@ namespace LaboratoryWork
             Consts.S_a_f = Consts.L * SinInRadians(Consts.a) ;
             Consts.A_a_f = Consts.L * CosInRadians(Consts.a) / (2F * Pi);
         }
-        /// <summary>
-        /// процедура для нахождения точки с координатами х и у в декартовой системе, которая необходима для рисования радиуса заданной длинны на определенном угле в полярной системе координат
-        /// название Catets, т.к. процедура работает по принципу катетов в прямоугольном треугольнике
-        /// </summary>
-        /// <param name="Coal">задать угол радиуса</param>
-        /// <param name="Hypotenuse">задать размер радиуса</param>
-        /// <param name="Catet1">получить координату х</param>
-        /// <param name="Catet2">получить координату у</param>
-        public static void Catets(int Coal, int Hypotenuse, out int Catet1, out int Catet2)
-        {
-            if ((Coal < 90) || (Coal > 270))
-                Catet1 = (int)(Hypotenuse * Math.Cos(Coal / 180.0 * Math.PI)); //прилежащий
-            else
-                Catet1 = (int)(-(Hypotenuse * Math.Cos(Coal / 180.0 * Math.PI)));
-
-            if ((Coal > 90) && (Coal < 270))
-                Catet1 = -Catet1;
-
-            if ((Coal > 0) && (Coal < 180))
-                Catet2 = (int)(Hypotenuse * Math.Sin(Coal / 180.0 * Math.PI)); //противолежащий
-            else
-                Catet2 = (int)((Hypotenuse * Math.Sin(Coal / 180.0 * Math.PI)));
-        }
 
         private static Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>> generalFunctionsByNameFunc =
             new Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>>
@@ -158,6 +135,7 @@ namespace LaboratoryWork
                     throw new ArgumentException();
             }
         }
+        //ToDo переписать: правильно обрабатывать ситуацию, когда знаменатель равен нулю
         /// <summary>
         /// основная часть математической функции
         /// </summary>
@@ -167,21 +145,22 @@ namespace LaboratoryWork
 
         private static float FuncInside(float E_a, float Q)
         {
-            double FuncInsideUp = Math.Sin (Consts.N * Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q)));
-            double FuncInsideDown = Math.Sin (Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q)));            
-            for (float Dx = ParametrsForm.MyDx; FuncInsideDown == 0; Dx++)
+            var argumentSinForDenominator = Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q));
+            double funcInsideUp = Math.Sin (Consts.N * argumentSinForDenominator);
+            double funcInsideDown = Math.Sin (argumentSinForDenominator);
+            for (float Dx = ParametrsForm.MyDx; funcInsideDown == 0; Dx++)
             {
-                FuncInsideUp = Math.Sin(Consts.N * Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q + ParametrsForm.MyDx)));
-                FuncInsideDown = Math.Sin(Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q + ParametrsForm.MyDx)));
+                funcInsideUp = Math.Sin(Consts.N * Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q + ParametrsForm.MyDx)));
+                funcInsideDown = Math.Sin(Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q + ParametrsForm.MyDx)));
                 //выход из цикличности, если число проходов больше 100
                 if (Dx == ParametrsForm.MyDx * 100)
                 {
-                    FuncInsideDown = 0.01F;
+                    funcInsideDown = 0.01F;
                     MessageBox.Show("Возможна ошибка в отрисовке графиков, зациклилась функция FuncInside, число циклов 100");
                 }
             }
             
-            return (float)(FuncInsideUp/FuncInsideDown);
+            return (float)(funcInsideUp/funcInsideDown);
             
         }
         /// <summary>
@@ -231,7 +210,6 @@ namespace LaboratoryWork
             float F_4 = General_F_4_WithOutAbs(Consts.Q, TypeFunction);
             float F_4_abs = Math.Abs(F_4);
             float F_Q_abs = Math.Abs(F_4 * CosInRadians(Consts.Q));
-
             float a = 1;
             if (F_Q_abs == 0)
                 F_Q_abs = 0.0001F;
@@ -241,66 +219,28 @@ namespace LaboratoryWork
                 m = 1000;
 
             float b = m * a;
-            float e = b * b > 1 ? (float)Math.Sqrt(1 - a * a / (b * b)) : (float)Math.Sqrt(0.1);            
-
-            float r = e * e * CosInRadians(Fi) * CosInRadians(Fi) <= 1 //для защиты от отрицательного подкоренного выражения
-                ? b / (float)Math.Sqrt(1 - e * e * CosInRadians(Fi) * CosInRadians(Fi))
+            float e = b * b > 1 ? (float)Math.Sqrt(1 - a * a / (b * b)) : (float)Math.Sqrt(0.1);
+            var radicand = 1 - e * e * CosInRadians(Fi) * CosInRadians(Fi);
+            float r = radicand < 0 //для защиты от отрицательного подкоренного выражения
+                ? b / (float)Math.Sqrt(radicand)
                 : b;
 
             return r;
         }
-
-
-        /// <summary>
-        /// функция Atan2 для обсчета координаты Fi (Угла в полярной системе координат)
-        /// </summary>
-        /// <param name="y">декартовая координата у </param>
-        /// <param name="x">декартовая координата х </param>
-        /// <returns></returns>
-        public static double Atan2(double y, double x)
-        {
-            double Atan2 = 0;
-            
-            if (x > 0 && y>=0) 
-                Atan2 = Math.Atan(y / x);
-
-            if (x > 0 && y < 0)
-                Atan2 = Math.Atan(y / x) + 2 * Pi;
-
-            if (x < 0)
-                Atan2 = Math.Atan(y / x) + Pi;
-            
-            if (x == 0) 
-            {
-                if (y < 0)
-                    Atan2 = Pi + Pi / 2;
-                else
-                    Atan2 = Pi - Pi / 2;
-            }
-
-            if (x == 0 && y == 0)
-                Atan2 = 0;
-            return Atan2 / Math.PI*180;
-        }
+        
         /// <summary>
         /// функция Cos возвращающая флот и считающая в градусах, а не радианах
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        private static float CosInRadians (float x)
-        {
-            return (float)Math.Cos(x / 180F * Math.PI);
-        }
+        private static float CosInRadians (float x) => (float)Math.Cos(x / 180F * Math.PI);
 
         /// <summary>
         /// функция Sin возвращающая флот и считающая в градусах, а не радианах
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        private static float SinInRadians(float x)
-        {
-            return (float)Math.Sin(x / 180F * Math.PI);
-        }
+        private static float SinInRadians(float x) => (float)Math.Sin(x / 180F * Math.PI);
     }
 }
 
