@@ -28,8 +28,8 @@ namespace LaboratoryWork
             InitializeComponent();
             InitializeImageBoxNew(imageBox);
             
-            Delegates.OnChangeConsts = new Delegates.ChangeConsts(RefreshPainBox);
-            Delegates.OnChangeTypeFunctions = new Delegates.ChangeTypeFunctions(RefreshPainBox);
+            Delegates.OnChangeConsts += new Delegates.ChangeConsts(RefreshPainBox);
+            Delegates.OnChangeTypeFunctions += new Delegates.ChangeTypeFunctions(RefreshPainBox);
         }
 
         private void RefreshPainBox()

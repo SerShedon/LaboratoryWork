@@ -21,9 +21,7 @@
             {
                 _f = value;
                 Calculations.SetCoefficients();
-
-                if (Delegates.OnChangeConsts != null)
-                    Delegates.OnChangeConsts();
+                Delegates.OnChangeConsts?.Invoke();
             }
         }        
 
@@ -33,8 +31,7 @@
             set
             {
                 _N = value;
-                if (Delegates.OnChangeConsts != null)
-                    Delegates.OnChangeConsts();
+                Delegates.OnChangeConsts?.Invoke();
             }
         }
         public static float a
@@ -43,8 +40,7 @@
             set
             {
                 _a = value;
-                if (Delegates.OnChangeConsts != null)
-                    Delegates.OnChangeConsts();
+                Delegates.OnChangeConsts?.Invoke();
             }
         }
         public static float M
@@ -53,8 +49,7 @@
             set
             {
                 _M = value;
-                if (Delegates.OnChangeConsts != null)
-                    Delegates.OnChangeConsts();
+                Delegates.OnChangeConsts?.Invoke();
             }
         }
         public static float d_f
@@ -63,8 +58,7 @@
             set
             {
                 _d_f = value;
-                if (Delegates.OnChangeConsts != null)
-                    Delegates.OnChangeConsts();
+                Delegates.OnChangeConsts?.Invoke();
             }
         }
         public static float Q
@@ -73,8 +67,7 @@
             set
             {
                 _Q = value;
-                if (Delegates.OnChangeConsts != null)
-                    Delegates.OnChangeConsts();
+                Delegates.OnChangeConsts?.Invoke();
             }
         }
         public static Enums.TypeSpiralAntennas TypeSpiralAntennas
@@ -83,8 +76,7 @@
             set
             {
                 _TypeSpiralAntennas = value;
-                if (Delegates.OnChangeConsts != null)
-                    Delegates.OnChangeConsts();
+                Delegates.OnChangeConsts?.Invoke();
             }
         }
 
@@ -94,8 +86,7 @@
             set
             {
                 _TypeFunctions = value;
-                if (Delegates.OnChangeConsts != null)
-                    Delegates.OnChangeConsts();
+                Delegates.OnChangeConsts?.Invoke();
             }
         }
 
