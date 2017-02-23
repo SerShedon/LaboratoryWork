@@ -255,45 +255,40 @@ namespace LaboratoryWork
         /// рисуем линии для грида в полярной
         /// </summary>
         /// <param name="e">где рисовать</param>
-        /// <param name="Degrees">угол, влияет на количество линий</param>
+        /// <param name="angle">угол, влияет на количество линий</param>
         /// <param name="x0">коориданта х0 центра</param>
         /// <param name="y0">коориданта у0 центра</param>
         /// <param name="MyP">карандаш</param>
 
-        private void DrawPolGridLine(PaintEventArgs e, int Degrees, int x0, int y0, Pen MyP)
+        private void DrawPolGridLine(PaintEventArgs e, int angle, int x0, int y0, Pen MyP)
         {
-            int Radius = Height / 2;
-            int Catet1;//для отрисовки конца линии по ОХ
-            int Catet2;//для отрисовки конца линии по ОУ
-            for (int i = 1; i < 360 / Degrees; i++)
-                if (Degrees * i % 90 != 0)
-                {
-                    Calculations.Catets(i * Degrees, Radius, out Catet1, out Catet2);
-                    e.Graphics.DrawLine(MyP, x0, y0, x0 + Catet1, Catet2 + y0);
-                }
+            int radius = Height / 2;
+            for (int i = 1; i < 360 / angle; i++)
+                if (angle * i % 90 != 0)
+                    e.Graphics.DrawLine(MyP, x0, y0, x0 + TransformPolarPointToX(radius, i * angle), y0 + TransformPolarPointToY(radius, i * angle));
         }
 
         /// <summary>
         /// рисуем окружности для грида в полярной
         /// </summary>
         /// <param name="e">где рисовать</param>
-        /// <param name="StepRadius">радиус, влияет на количество окружностей</param>
+        /// <param name="stepRadius">радиус, влияет на количество окружностей</param>
         /// <param name="x0">коориданта х0 центра</param>
         /// <param name="y0">коориданта у0 центра</param>
         /// <param name="MyP">карандаш</param>
-        private void DrawPolGridCircles(PaintEventArgs e, float StepRadius, int x0, int y0, Pen MyPen)
+        private void DrawPolGridCircles(PaintEventArgs e, float stepRadius, int x0, int y0, Pen myPen)
         {
             int maxRadius = Height / 2;
             //1 это максимальное значение которое может принимать Y, 10 нужно для расчетов в int иначе во флоте не верно решает (StepRadius * i <= 1)
-            for (int i = 1; (int)(StepRadius * i * 10) <= 1 * 10; i++)
+            for (int i = 1; (int)(stepRadius * i * 10) <= 1 * 10; i++)
             {
-                int radiusForDraw = (int)(maxRadius * StepRadius * i);
-                e.Graphics.DrawEllipse(MyPen, x0 - radiusForDraw, y0 - radiusForDraw, radiusForDraw * 2, radiusForDraw * 2);
+                int radiusForDraw = (int)(maxRadius * stepRadius * i);
+                e.Graphics.DrawEllipse(myPen, x0 - radiusForDraw, y0 - radiusForDraw, radiusForDraw * 2, radiusForDraw * 2);
             }
         }
 
 
-        private void DrawGraph(PaintEventArgs e, Func<float, float> funcForCalculate, Pen MyP)
+        private void DrawGraph(PaintEventArgs e, Func<float, float> funcForCalculate, Pen myPen)
         {
             var pointDecAct = new PointF(xFirst, funcForCalculate(xFirst));
             var pointDecNext = new PointF(pointDecAct.X + Dx, 0);        
@@ -308,8 +303,8 @@ namespace LaboratoryWork
                 pointDecNext.Y = funcForCalculate(pointDecNext.X);
                 if (TypeCoordinateSystem == Enums.TypeCoordinateSystem.Polar)
                 {
-                    pointPolAct = TranslateDecInPol(pointDecAct);
-                    pointPolNext = TranslateDecInPol(pointDecNext);
+                    pointPolAct = TransformCartesianInPolal(pointDecAct);
+                    pointPolNext = TransformCartesianInPolal(pointDecNext);
 
                     pointActForPaint = new PointF(pointPolAct.X * CoefficientY, pointPolAct.Y * CoefficientY);
                     pointNextForPaint = new PointF(pointPolNext.X * CoefficientY, pointPolNext.Y * CoefficientY);
@@ -319,7 +314,7 @@ namespace LaboratoryWork
                     pointActForPaint = new PointF(pointDecAct.X * CoefficientX, pointDecAct.Y * CoefficientY);
                     pointNextForPaint = new PointF(pointDecNext.X * CoefficientX, pointDecNext.Y * CoefficientY);
                 }
-                e.Graphics.DrawLine(MyP, pointActForPaint, pointNextForPaint);
+                e.Graphics.DrawLine(myPen, pointActForPaint, pointNextForPaint);
             }
         }
 
@@ -328,9 +323,15 @@ namespace LaboratoryWork
         /// </summary>
         /// <param name="pointDec"></param>
         /// <returns></returns>
-        private static PointF TranslateDecInPol(PointF pointDec)
+        private static PointF TransformCartesianInPolal(PointF pointDec)
             => new PointF(-CosInRadians(pointDec.X) * pointDec.Y, -SinInRadians(pointDec.X) * pointDec.Y);
         
+        private static int TransformPolarPointToX(int radius, int angle)
+            => (int)(radius * CosInRadians(angle));
+
+        private static int TransformPolarPointToY(int radius, int angle)
+            => (int)(radius * SinInRadians(angle));
+
         private static float CosInRadians(float x) => (float)Math.Cos(x / 180F * Math.PI);
         
         private static float SinInRadians(float x) => (float)Math.Sin(x / 180F * Math.PI);
