@@ -42,8 +42,8 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblFirstCoordinate = new System.Windows.Forms.Label();
+            this.lblSecondtCoordinate = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -260,21 +260,21 @@
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(648, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(231, 13);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Значение ДН по радиальному направлению";
+            this.lblFirstCoordinate.AutoSize = true;
+            this.lblFirstCoordinate.Location = new System.Drawing.Point(648, 51);
+            this.lblFirstCoordinate.Name = "label6";
+            this.lblFirstCoordinate.Size = new System.Drawing.Size(231, 13);
+            this.lblFirstCoordinate.TabIndex = 17;
+            this.lblFirstCoordinate.Text = "Значение ДН по радиальному направлению";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(925, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Полярный угол";
+            this.lblSecondtCoordinate.AutoSize = true;
+            this.lblSecondtCoordinate.Location = new System.Drawing.Point(925, 52);
+            this.lblSecondtCoordinate.Name = "label7";
+            this.lblSecondtCoordinate.Size = new System.Drawing.Size(84, 13);
+            this.lblSecondtCoordinate.TabIndex = 18;
+            this.lblSecondtCoordinate.Text = "Полярный угол";
             // 
             // label8
             // 
@@ -783,8 +783,8 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblSecondtCoordinate);
+            this.Controls.Add(this.lblFirstCoordinate);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -840,8 +840,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblFirstCoordinate;
+        private System.Windows.Forms.Label lblSecondtCoordinate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox1;
