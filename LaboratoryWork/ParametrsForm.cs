@@ -84,24 +84,6 @@ namespace LaboratoryWork
             Calculations.k_f = Consts.F;            
             Calculations.My_d_f(Consts.D_f, Consts.F);            
         }
-        /*
-        private float GetCoefY()
-        {
-            float CoefY;
-            float X = Xfirst;
-            float Ymax = 0;
-            
-            for (; X <= Xlast; X = X + MyDx)
-            {
-                CoefY = Calculations.GeneralFuncForDrawDec(X, Consts.TypeFunctions, Enums.NameFunction.F_4);
-                if (Ymax > CoefY)
-                {
-                    Ymax = CoefY;
-                }
-                
-            }
-            return -(imageBoxNew3.Height - (imageBoxNew3.Height - imageBoxNew3.y0)) / (Ymax);
-        }*/
         #endregion
 
         //рисование в pictureBoxs
