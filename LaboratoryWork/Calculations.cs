@@ -36,6 +36,9 @@ namespace LaboratoryWork
                 my_k_f = 2F * pi * value / (3 * (float)Math.Pow(10, 2));//(float)Math.Pow(10, 6) т.к. в GraficForm частота в мегагерцах, тут в герцах
             }
         }
+
+        public static int CountCycliesBeforeThrowError = 100;
+
         public static void My_d_f(float d, float f) => d_f = d / f;
 
         /// <summary>
@@ -153,23 +156,9 @@ namespace LaboratoryWork
 
         private static float FuncInside(float e_a, float q)
         {
-            var argumentSinForDenominator = pi * (e_a - SinInRadians(Consts.A) * CosInRadians(q));
-            double funcInsideUp = Math.Sin (Consts.N * argumentSinForDenominator);
-            double funcInsideDown = Math.Sin (argumentSinForDenominator);
-            for (float Dx = ParametrsForm.Dx; funcInsideDown == 0; Dx++)
-            {
-                funcInsideUp = Math.Sin(Consts.N * pi * (e_a - SinInRadians(Consts.A) * CosInRadians(q + ParametrsForm.Dx)));
-                funcInsideDown = Math.Sin(pi * (e_a - SinInRadians(Consts.A) * CosInRadians(q + ParametrsForm.Dx)));
-                //выход из цикличности, если число проходов больше 100
-                if (Dx == ParametrsForm.Dx * 100)
-                {
-                    funcInsideDown = 0.01F;
-                    MessageBox.Show("Возможна ошибка в отрисовке графиков, зациклилась функция FuncInside, число циклов 100");
-                }
-            }
-            
-            return (float)(funcInsideUp/funcInsideDown);
-            
+            Func<float, float, double> getNumerator = (x, dx) => Math.Sin(Consts.N * (pi * (e_a - SinInRadians(Consts.A) * CosInRadians(x + dx))));
+            Func<float, float, double> getDenominator = (x, dx) => Math.Sin(pi * (e_a - SinInRadians(Consts.A) * CosInRadians(x + dx)));
+            return CalculateFraction(getNumerator, getDenominator, q, ParametrsForm.Dx);
         }
         /// <summary>
         /// расчет коэффициента к для математической функции
@@ -191,22 +180,28 @@ namespace LaboratoryWork
         /// <returns></returns>
         private static float Fc_QfM(float q)
         {
-            float fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * SinInRadians(q) / 2F);
-            float fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * SinInRadians(q) / 2F);
-            
-            for (float dx = ParametrsForm.Dx; fc_QfM_Down == 0; dx++)
-            {
-                fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * SinInRadians(q - dx) / 2F);
-                fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * SinInRadians(q - dx) / 2F);
-                //выход из цикличности, если число проходов больше 100
-                if (dx == ParametrsForm.Dx * 100)
-                {
-                    fc_QfM_Down = 0.01F;
-                    MessageBox.Show("Возможна ошибка в отрисовке графиков, зациклилась функция Fc_QfM_, число циклов 100");
-                }
-            }  
-            return fc_QfM_Up / fc_QfM_Down;
+            Func<float, float, double> getNumerator = (x, dx) => Math.Sin(Consts.M * k_f * d_f * SinInRadians(x + dx) / 2F);
+            Func<float, float, double> getDenominator = (x, dx) => Consts.M * Math.Sin(k_f * d_f * SinInRadians(x + dx) / 2F);
+            return CalculateFraction(getNumerator, getDenominator, q, ParametrsForm.Dx);
         }
+
+        private static float CalculateFraction(Func<float, float, double> getNumerator, Func<float, float, double> getDenominator, float argument, float dx)
+        {
+            var newDx = 0f;
+            var denominator = 0.0;
+            //can`t be divided by zero
+            for (int i = 0; denominator == 0; i++)
+            {
+                newDx = i * dx;
+                denominator = getDenominator(argument, newDx);
+
+                if (newDx == ParametrsForm.Dx * CountCycliesBeforeThrowError)
+                    throw (new Exception(String.Format("Зациклилась функция {0}, количество циклов = {1}", nameof(Fc_QfM), CountCycliesBeforeThrowError)));
+            }
+            var numerator = getNumerator(argument, newDx);
+            return (float)(numerator / denominator);
+        }
+
         /// <summary>
         /// математическая функция для просчета поляризационной характеристики
         /// </summary>
