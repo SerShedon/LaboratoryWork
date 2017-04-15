@@ -12,35 +12,35 @@ namespace LaboratoryWork
             FunctionForCalculate = x => 0;
             TypeCoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
         }
-        private float _Dx = 1F;
+        private float dx = 1F;
         /// <summary>
         /// шаг
         /// </summary>
         public float Dx
         {
-            get { return _Dx; }
-            set { _Dx = value; }
+            get { return dx; }
+            set { dx = value; }
         }
         float xFirst = -180F;
         float xLast = 180F;
 
-        private Pen _PenDrawAxis = new Pen(Color.Black, 2);
+        private Pen penDrawAxis = new Pen(Color.Black, 2);
         public Pen PenDrawAxis
         {
-            get { return _PenDrawAxis; }
-            set { _PenDrawAxis = value; }
+            get { return penDrawAxis; }
+            set { penDrawAxis = value; }
         }
-        private Pen _PenDrawGrid = new Pen(Color.Green, 1);
+        private Pen penDrawGrid = new Pen(Color.Green, 1);
         public Pen PenDrawGrid
         {
-            get { return _PenDrawGrid; }
-            set { _PenDrawGrid = value; }
+            get { return penDrawGrid; }
+            set { penDrawGrid = value; }
         }
-        private Pen _PenDrawGraph = new Pen(Color.Red, 2);
+        private Pen penDrawGraph = new Pen(Color.Red, 2);
         public Pen PenDrawGraph
         {
-            get { return _PenDrawGraph; }
-            set { _PenDrawGraph = value; }
+            get { return penDrawGraph; }
+            set { penDrawGraph = value; }
         }
         Func<float, float> functionForCalculate = x => { return x; };
         public Func<float, float> FunctionForCalculate

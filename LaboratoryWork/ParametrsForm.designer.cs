@@ -42,17 +42,11 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.lblFirstCoordinate = new System.Windows.Forms.Label();
-            this.lblSecondtCoordinate = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.trackBar6 = new System.Windows.Forms.TrackBar();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -62,18 +56,12 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.справочныйМатериалToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.краткиеТеоретическиеСведенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,11 +77,9 @@
             this.декартоваяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.imageBoxNew3 = new GraphBox();
-            this.imageBoxNew2 = new GraphBox();
-            this.imageBoxNew1 = new GraphBox();
             this.btnGraphForm1 = new System.Windows.Forms.Button();
             this.btnGraphForm2 = new System.Windows.Forms.Button();
+            this.btnGraphForm3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -102,9 +88,6 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxNew3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxNew2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxNew1)).BeginInit();
             this.SuspendLayout();
             // 
             // trackBar1
@@ -260,42 +243,6 @@
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // lblFirstCoordinate
-            // 
-            this.lblFirstCoordinate.AutoSize = true;
-            this.lblFirstCoordinate.Location = new System.Drawing.Point(648, 51);
-            this.lblFirstCoordinate.Name = "lblFirstCoordinate";
-            this.lblFirstCoordinate.Size = new System.Drawing.Size(231, 13);
-            this.lblFirstCoordinate.TabIndex = 17;
-            this.lblFirstCoordinate.Text = "Значение ДН по радиальному направлению";
-            // 
-            // lblSecondtCoordinate
-            // 
-            this.lblSecondtCoordinate.AutoSize = true;
-            this.lblSecondtCoordinate.Location = new System.Drawing.Point(925, 52);
-            this.lblSecondtCoordinate.Name = "lblSecondtCoordinate";
-            this.lblSecondtCoordinate.Size = new System.Drawing.Size(84, 13);
-            this.lblSecondtCoordinate.TabIndex = 18;
-            this.lblSecondtCoordinate.Text = "Полярный угол";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(648, 451);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(231, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Значение ДН по радиальному направлению";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(925, 451);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 13);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "Полярный  угол";
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(222, 66);
@@ -336,26 +283,9 @@
             this.textBox5.TabIndex = 25;
             this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(260, 435);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(242, 29);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "Величина поляризационной характеристики по радиальному направлению";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(23, 435);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(87, 13);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Полярный  угол";
-            // 
             // trackBar6
             // 
-            this.trackBar6.Location = new System.Drawing.Point(82, 792);
+            this.trackBar6.Location = new System.Drawing.Point(50, 380);
             this.trackBar6.Maximum = 89;
             this.trackBar6.Minimum = 1;
             this.trackBar6.Name = "trackBar6";
@@ -369,7 +299,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(45, 792);
+            this.label12.Location = new System.Drawing.Point(13, 380);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(42, 26);
             this.label12.TabIndex = 29;
@@ -377,7 +307,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(258, 798);
+            this.textBox6.Location = new System.Drawing.Point(226, 386);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(61, 20);
             this.textBox6.TabIndex = 30;
@@ -434,28 +364,6 @@
             this.textBox9.Size = new System.Drawing.Size(37, 20);
             this.textBox9.TabIndex = 36;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(307, 299);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(93, 23);
-            this.button4.TabIndex = 37;
-            this.button4.Text = "Декартовая";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(406, 298);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 38;
-            this.button5.Text = "Полярная";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -503,46 +411,11 @@
             // 
             // label21
             // 
-            this.label21.Location = new System.Drawing.Point(48, 757);
+            this.label21.Location = new System.Drawing.Point(16, 345);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(218, 32);
             this.label21.TabIndex = 47;
             this.label21.Text = "Значение меридионального угла для исследования поляризационных свойств";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(321, 282);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(144, 13);
-            this.label22.TabIndex = 48;
-            this.label22.Text = "Выбор системы координат";
-            this.label22.Visible = false;
-            // 
-            // label23
-            // 
-            this.label23.Location = new System.Drawing.Point(674, 30);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(317, 15);
-            this.label23.TabIndex = 49;
-            this.label23.Text = "Нормированная ДН в плоскости, перпендикулярной витку";
-            // 
-            // label24
-            // 
-            this.label24.Location = new System.Drawing.Point(696, 435);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(280, 13);
-            this.label24.TabIndex = 50;
-            this.label24.Text = "Нормированная ДН в плоскости, содержащей витки";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(150, 401);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(140, 13);
-            this.label25.TabIndex = 51;
-            this.label25.Text = "Поляризационный эллипс";
             // 
             // menuStrip1
             // 
@@ -552,7 +425,7 @@
             this.системаКоординатToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1123, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
             this.menuStrip1.TabIndex = 52;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -668,87 +541,9 @@
             this.label27.TabIndex = 54;
             this.label27.Text = "Исходные параметры:";
             // 
-            // imageBoxNew3
-            // 
-            this.imageBoxNew3.BackColor = System.Drawing.Color.White;
-            this.imageBoxNew3.Coef_X_Cartesian = 0F;
-            this.imageBoxNew3.Coef_X_Polar = 0F;
-            this.imageBoxNew3.Coef_Y_Cartesian = 0F;
-            this.imageBoxNew3.Coef_Y_Polar = 0F;
-            this.imageBoxNew3.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
-            this.imageBoxNew3.CountLineX = 0;
-            this.imageBoxNew3.CountLineY = 0;
-            this.imageBoxNew3.Degrees = 0;
-            this.imageBoxNew3.Dx = 1F;
-            this.imageBoxNew3.HeightNew = 0;
-            this.imageBoxNew3.Location = new System.Drawing.Point(9, 467);
-            this.imageBoxNew3.Name = "imageBoxNew3";
-            this.imageBoxNew3.Size = new System.Drawing.Size(476, 287);
-            this.imageBoxNew3.StepRadius = 0F;
-            this.imageBoxNew3.TabIndex = 41;
-            this.imageBoxNew3.TabStop = false;
-            this.imageBoxNew3.X0_Dec = 0;
-            this.imageBoxNew3.X0_Pol = 0;
-            this.imageBoxNew3.Y0_Dec = 0;
-            this.imageBoxNew3.Y0_Pol = 0;
-            this.imageBoxNew3.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBoxNew3_Paint);
-            this.imageBoxNew3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBoxNew3_MouseMove);
-            // 
-            // imageBoxNew2
-            // 
-            this.imageBoxNew2.BackColor = System.Drawing.Color.White;
-            this.imageBoxNew2.Coef_X_Cartesian = 0F;
-            this.imageBoxNew2.Coef_X_Polar = 0F;
-            this.imageBoxNew2.Coef_Y_Cartesian = 0F;
-            this.imageBoxNew2.Coef_Y_Polar = 0F;
-            this.imageBoxNew2.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
-            this.imageBoxNew2.CountLineX = 0;
-            this.imageBoxNew2.CountLineY = 0;
-            this.imageBoxNew2.Degrees = 0;
-            this.imageBoxNew2.Dx = 1F;
-            this.imageBoxNew2.HeightNew = 0;
-            this.imageBoxNew2.Location = new System.Drawing.Point(523, 467);
-            this.imageBoxNew2.Name = "imageBoxNew2";
-            this.imageBoxNew2.Size = new System.Drawing.Size(600, 361);
-            this.imageBoxNew2.StepRadius = 0F;
-            this.imageBoxNew2.TabIndex = 40;
-            this.imageBoxNew2.TabStop = false;
-            this.imageBoxNew2.X0_Dec = 0;
-            this.imageBoxNew2.X0_Pol = 0;
-            this.imageBoxNew2.Y0_Dec = 0;
-            this.imageBoxNew2.Y0_Pol = 0;
-            this.imageBoxNew2.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBoxNew2_Paint);
-            this.imageBoxNew2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBoxNew2_MouseMove);
-            // 
-            // imageBoxNew1
-            // 
-            this.imageBoxNew1.BackColor = System.Drawing.Color.White;
-            this.imageBoxNew1.Coef_X_Cartesian = 0F;
-            this.imageBoxNew1.Coef_X_Polar = 0F;
-            this.imageBoxNew1.Coef_Y_Cartesian = 0F;
-            this.imageBoxNew1.Coef_Y_Polar = 0F;
-            this.imageBoxNew1.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
-            this.imageBoxNew1.CountLineX = 0;
-            this.imageBoxNew1.CountLineY = 0;
-            this.imageBoxNew1.Degrees = 0;
-            this.imageBoxNew1.Dx = 1F;
-            this.imageBoxNew1.HeightNew = 0;
-            this.imageBoxNew1.Location = new System.Drawing.Point(523, 68);
-            this.imageBoxNew1.Name = "imageBoxNew1";
-            this.imageBoxNew1.Size = new System.Drawing.Size(600, 361);
-            this.imageBoxNew1.StepRadius = 0F;
-            this.imageBoxNew1.TabIndex = 39;
-            this.imageBoxNew1.TabStop = false;
-            this.imageBoxNew1.X0_Dec = 0;
-            this.imageBoxNew1.X0_Pol = 0;
-            this.imageBoxNew1.Y0_Dec = 0;
-            this.imageBoxNew1.Y0_Pol = 0;
-            this.imageBoxNew1.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBoxNew1_Paint);
-            this.imageBoxNew1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBoxNew1_MouseMove);
-            // 
             // btnGraphForm1
             // 
-            this.btnGraphForm1.Location = new System.Drawing.Point(277, 344);
+            this.btnGraphForm1.Location = new System.Drawing.Point(517, 55);
             this.btnGraphForm1.Name = "btnGraphForm1";
             this.btnGraphForm1.Size = new System.Drawing.Size(240, 38);
             this.btnGraphForm1.TabIndex = 55;
@@ -758,7 +553,7 @@
             // 
             // btnGraphForm2
             // 
-            this.btnGraphForm2.Location = new System.Drawing.Point(307, 388);
+            this.btnGraphForm2.Location = new System.Drawing.Point(517, 101);
             this.btnGraphForm2.Name = "btnGraphForm2";
             this.btnGraphForm2.Size = new System.Drawing.Size(192, 38);
             this.btnGraphForm2.TabIndex = 56;
@@ -766,32 +561,34 @@
             this.btnGraphForm2.UseVisualStyleBackColor = true;
             this.btnGraphForm2.Click += new System.EventHandler(this.btnGraphForm2_Click);
             // 
+            // btnGraphForm3
+            // 
+            this.btnGraphForm3.Location = new System.Drawing.Point(517, 145);
+            this.btnGraphForm3.Name = "btnGraphForm3";
+            this.btnGraphForm3.Size = new System.Drawing.Size(158, 46);
+            this.btnGraphForm3.TabIndex = 57;
+            this.btnGraphForm3.Text = "Поляризационный эллипс";
+            this.btnGraphForm3.UseVisualStyleBackColor = true;
+            this.btnGraphForm3.Click += new System.EventHandler(this.btnGraphForm3_Click);
+            // 
             // ParametrsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.ClientSize = new System.Drawing.Size(1132, 741);
+            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.btnGraphForm3);
             this.Controls.Add(this.btnGraphForm2);
             this.Controls.Add(this.btnGraphForm1);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label26);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.label23);
-            this.Controls.Add(this.label22);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.imageBoxNew3);
-            this.Controls.Add(this.imageBoxNew2);
-            this.Controls.Add(this.imageBoxNew1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
@@ -801,17 +598,11 @@
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.trackBar6);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.lblSecondtCoordinate);
-            this.Controls.Add(this.lblFirstCoordinate);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -826,14 +617,13 @@
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(1148, 726);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "ParametrsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Графики";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParametrsFormClosing);
             this.Load += new System.EventHandler(this.ParametrsFormLoad);
             this.Shown += new System.EventHandler(this.ParametrsFormShown);
-            this.Move += new System.EventHandler(this.ParametrsFormMove);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
@@ -844,9 +634,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxNew3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxNew2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxNew1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -867,17 +654,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label lblFirstCoordinate;
-        private System.Windows.Forms.Label lblSecondtCoordinate;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TrackBar trackBar6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox6;
@@ -888,21 +669,12 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private GraphBox imageBoxNew1;
-        private GraphBox imageBoxNew2;
-        private GraphBox imageBoxNew3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem справочныйМатериалToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem краткиеТеоретическиеСведенияToolStripMenuItem;
@@ -920,6 +692,7 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button btnGraphForm1;
         private System.Windows.Forms.Button btnGraphForm2;
+        private System.Windows.Forms.Button btnGraphForm3;
     }
 }
 

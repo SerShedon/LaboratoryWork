@@ -11,101 +11,42 @@ namespace LaboratoryWork
         {
             InitializeComponent();
             GetValuesFromTrackBars();
-            //imageBoxNew1
-            InitializeImageBoxNew(imageBoxNew1);
-            imageBoxNew1.FunctionForCalculate = x => { return - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_4); };
-
-            //imageBoxNew2
-
-            InitializeImageBoxNew(imageBoxNew2);
-            imageBoxNew2.FunctionForCalculate = x => { return - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_Q); };
-
-            //imageBoxNew3
-
-            InitializeImageBoxNew(imageBoxNew3);
-            imageBoxNew3.FunctionForCalculate = x => { return - Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.r); };
-
+            
         }
-        private void InitializeImageBoxNew(GraphBox MyImageBoxNew)
+        private void InitializeImageBoxNew(GraphBox graphBox)
         {
-            MyImageBoxNew.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
-            MyImageBoxNew.X0_Pol = MyImageBoxNew.Width / 2;
-            MyImageBoxNew.Y0_Pol = MyImageBoxNew.Height / 2;
+            graphBox.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
+            graphBox.X0_Pol = graphBox.Width / 2;
+            graphBox.Y0_Pol = graphBox.Height / 2;
 
-            MyImageBoxNew.X0_Dec = MyImageBoxNew.Width / 2;
-            MyImageBoxNew.Y0_Dec = MyImageBoxNew.Height;
+            graphBox.X0_Dec = graphBox.Width / 2;
+            graphBox.Y0_Dec = graphBox.Height;
 
-            MyImageBoxNew.Degrees = 30;
-            MyImageBoxNew.StepRadius = 0.2F;
+            graphBox.Degrees = 30;
+            graphBox.StepRadius = 0.2F;
 
-            MyImageBoxNew.CountLineX = 10;
-            MyImageBoxNew.CountLineY = 10;
+            graphBox.CountLineX = 10;
+            graphBox.CountLineY = 10;
 
-            MyImageBoxNew.Coef_X_Cartesian = MyImageBoxNew.Width / 360F;
-            MyImageBoxNew.Coef_Y_Cartesian = MyImageBoxNew.Height / 1F;
+            graphBox.Coef_X_Cartesian = graphBox.Width / 360F;
+            graphBox.Coef_Y_Cartesian = graphBox.Height / 1F;
 
-            MyImageBoxNew.Coef_X_Polar = MyImageBoxNew.Width / 360F;
-            MyImageBoxNew.Coef_Y_Polar = MyImageBoxNew.Height / 2F;
+            graphBox.Coef_X_Polar = graphBox.Width / 360F;
+            graphBox.Coef_Y_Polar = graphBox.Height / 2F;
         }
         
         //инициализация новых переменных, присвоением им значений 
         #region
-        //шаг
-        private static float Dx = 1F;//шаг
-
-        public static float MyDx //шаг
+        private static float dx = 1F;
+        /// <summary>
+        /// шаг
+        /// </summary>
+        public static float Dx
         {
-            get { return Dx;}
+            get { return dx;}
         }
 
-        //в каких пределах будут значения тетта (Q)-аргумента функции
-        float Xfirst = -180F;//начальное
-        float Xlast  =  180F;//конечное
-
-        public PointF P_first; //точка с которой будет начинаться рисоваться график       
-        public PointF P_act;   //текущая точка отрисовки графика
-        public PointF P_next;  //следующая точка отрисовки графика
-        public PointF P_last;  //точка которой будет заканчиваться рисоваться график 
-
-
-        //коэффициенты для различных ImageBoxNew (1,2,3)
-        //для ImageBoxNew1
-        float Coef_X1;
-        float Coef_Y1;
-        //для ImageBoxNew2
-        float Coef_X2;
-        float Coef_Y2;
-        //для ImageBoxNew3
-        float Coef_X3;
-        float Coef_Y3;
-        //
-
-        private void GetCoefficientsForImageBoxNew1()//переделать программу и удалить эту функцию
-        {
-            Coef_X1 = imageBoxNew1.CoefficientX;
-            Coef_Y1 = imageBoxNew1.CoefficientY;
-            if (Consts.TypeFunctions == Enums.TypeFunction.E_Crit)
-            {
-                Coef_Y1 = Coef_Y1 / 3.5F;
-            }
-        }
-
-        private void GetCoefficientsForImageBoxNew2()//переделать программу и удалить эту функцию
-        {
-            Coef_X2 = imageBoxNew2.CoefficientX;
-            Coef_Y2 = imageBoxNew2.CoefficientY;
-            if (Consts.TypeFunctions == Enums.TypeFunction.E_Crit)
-            {
-                Coef_Y2 = Coef_Y2 / 3.5F;
-            }
-        }
-
-        private void GetCoefficientsForImageBoxNew3()//переделать программу и удалить эту функцию
-        {
-            Coef_X3 = imageBoxNew3.CoefficientX;         
-            Coef_Y3 = GetCoefY();            
-        }
-
+        //ToDo: подумать об автоматическом масштабировани, например при Consts.TypeFunctions == Enums.TypeFunction.E_Crit, нужно уменьшить коэффициент Coef_Y = Coef_Y / 3.5F;
         Pen PenDrawGrid = new Pen(Color.Green, 1);
         Pen PenDrawAxis = new Pen(Color.Black, 2);
         Pen PenDrawGraph = new Pen(Color.Red, 2);
@@ -114,37 +55,36 @@ namespace LaboratoryWork
         {
             GetValuesFromTrackBars();
             WriteValuesInTextBoxs();
-            GetCoefY();
             SetValueInCalculations();
             RefreshConstants();
         }
 
         private void GetValuesFromTrackBars()
         {
-            Consts.f = trackBar1?.Value ?? 0;
+            Consts.F = trackBar1?.Value ?? 0;
             Consts.N = trackBar2?.Value ?? 0;
-            Consts.a = trackBar3?.Value ?? 0;
+            Consts.A = trackBar3?.Value ?? 0;
             Consts.M = trackBar4?.Value ?? 0;
-            Consts.d_f = trackBar5?.Value ?? 0;
+            Consts.D_f = trackBar5?.Value ?? 0;
             Consts.Q = trackBar6?.Value ?? 0;
         }
 
         private void WriteValuesInTextBoxs()
         {
-            textBox1.Text = Consts.f.ToString();
+            textBox1.Text = Consts.F.ToString();
             textBox2.Text = Consts.N.ToString();
-            textBox3.Text = Consts.a.ToString();
+            textBox3.Text = Consts.A.ToString();
             textBox4.Text = Consts.M.ToString();
-            textBox5.Text = (Consts.d_f / 100f).ToString("0.00");
+            textBox5.Text = (Consts.D_f / 100f).ToString("0.00");
             textBox6.Text = Consts.Q.ToString();
         }
 
         private void SetValueInCalculations()
         {
-            Calculations.k_f = Consts.f;            
-            Calculations.My_d_f(Consts.d_f, Consts.f);            
+            Calculations.k_f = Consts.F;            
+            Calculations.My_d_f(Consts.D_f, Consts.F);            
         }
-
+        /*
         private float GetCoefY()
         {
             float CoefY;
@@ -161,7 +101,7 @@ namespace LaboratoryWork
                 
             }
             return -(imageBoxNew3.Height - (imageBoxNew3.Height - imageBoxNew3.y0)) / (Ymax);
-        }
+        }*/
         #endregion
 
         //рисование в pictureBoxs
@@ -190,40 +130,35 @@ namespace LaboratoryWork
         #region
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            Consts.f = trackBar1.Value;
+            Consts.F = trackBar1.Value;
 
             RefreshConstants();
-            RefreshPictureBoxs();
-            textBox1.Text = Consts.f.ToString();
+            textBox1.Text = Consts.F.ToString();
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             Consts.N = trackBar2.Value;
             textBox2.Text = trackBar2.Value.ToString();
-            RefreshPictureBoxs();            
         }
 
         private void trackBar3_Scroll(object sender, EventArgs e)
         {
-            Consts.a = trackBar3.Value;
+            Consts.A = trackBar3.Value;
             textBox3.Text = trackBar3.Value.ToString();
-            RefreshPictureBoxs();
         }
 
         private void trackBar4_Scroll(object sender, EventArgs e)
         {
             Consts.M = trackBar4.Value;
             textBox4.Text = trackBar4.Value.ToString();
-            RefreshPictureBoxs();
         }
 
         private void trackBar5_Scroll(object sender, EventArgs e)
         {
-            Consts.d_f = trackBar5.Value ;
+            Consts.D_f = trackBar5.Value ;
             
-            textBox5.Text = (Consts.d_f /100.0).ToString("0.00");
-            RefreshPictureBoxs();
+            textBox5.Text = (Consts.D_f /100.0).ToString("0.00");
         }
 
         private void trackBar6_Scroll(object sender, EventArgs e)
@@ -231,7 +166,6 @@ namespace LaboratoryWork
             Consts.Q = trackBar6.Value;
 
             textBox6.Text = Consts.Q.ToString();
-            RefreshPictureBoxs();
         }
         #endregion
         
@@ -240,19 +174,16 @@ namespace LaboratoryWork
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
-            RefreshPictureBoxs();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             Consts.TypeFunctions = Enums.TypeFunction.E_Opt;
-            RefreshPictureBoxs();
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             Consts.TypeFunctions = Enums.TypeFunction.E_Crit;
-            RefreshPictureBoxs();
         }
         #endregion
 
@@ -278,28 +209,6 @@ namespace LaboratoryWork
 
 
         #endregion
-        //pictureBox_MouseMove 
-        #region
-        private void imageBoxNew1_MouseMove(object sender, MouseEventArgs e)
-        {
-            GetCoefficientsForImageBoxNew1();
-            ShowCoordinateInLabel(lblFirstCoordinate, lblSecondtCoordinate, "Значение ДН по радиальному направлению", "Полярный угол", imageBoxNew1, e, Coef_X1, Coef_Y1);
-        }
-
-        private void imageBoxNew2_MouseMove(object sender, MouseEventArgs e)
-        {
-
-            GetCoefficientsForImageBoxNew2();
-            ShowCoordinateInLabel(label8, label9, "Значение ДН по радиальному направлению", "Полярный угол", imageBoxNew2, e, Coef_X2, Coef_Y2);
-        }
-
-        private void imageBoxNew3_MouseMove(object sender, MouseEventArgs e)
-        {
-            GetCoefficientsForImageBoxNew3();
-            ShowCoordinateInLabel(label10, label11, "Величина поляризационной характеристики по радиальному направлению", "Полярный угол", imageBoxNew3, e, Coef_X3, Coef_Y3);
-        }
-        #endregion
-        
         #endregion
 
         //задание значений трекбаров через текстбоксы, а так же проверка
@@ -361,34 +270,6 @@ namespace LaboratoryWork
             textBox7.Text = Consts.S_a_f.ToString("0.000");
             textBox8.Text = Consts.A_a_f.ToString("0.000");
         }
-
-        private void RefreshPictureBoxs()
-        {
-            imageBoxNew1.Refresh();
-            imageBoxNew2.Refresh();
-            imageBoxNew3.Refresh();
-        }
-        #endregion
-
-        
-        
-        // Для выбора полярной или декартовой системы координат
-        #region
-        private void button4_Click(object sender, EventArgs e)
-        {
-            imageBoxNew1.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
-            imageBoxNew2.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
-            RefreshPictureBoxs();            
-            
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            imageBoxNew1.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
-            imageBoxNew2.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
-            RefreshPictureBoxs();
-
-        }
         #endregion
 
         private void ParametrsFormClosing(object sender, FormClosingEventArgs e)
@@ -397,34 +278,22 @@ namespace LaboratoryWork
             Hide();
         }
 
-        
-
-        private void ParametrsFormMove(object sender, EventArgs e)
-        {
-            RefreshPictureBoxs();
-        }
-
         private void VisibilityComponents()
         {
-            bool TrueOrFalse = false;
+            bool isVisible = false;
             if (Consts.TypeSpiralAntennas == Enums.TypeSpiralAntennas.System)
-            {
-                TrueOrFalse = true;                
-            }
+                isVisible = true;
 
-            label4.Visible = TrueOrFalse;
-            label5.Visible = TrueOrFalse;
-            label18.Visible = TrueOrFalse;
-            label19.Visible = TrueOrFalse;
+            label4.Visible = isVisible;
+            label5.Visible = isVisible;
+            label18.Visible = isVisible;
+            label19.Visible = isVisible;
 
-            trackBar4.Visible = TrueOrFalse;
-            trackBar5.Visible = TrueOrFalse;
+            trackBar4.Visible = isVisible;
+            trackBar5.Visible = isVisible;
 
-            textBox4.Visible = TrueOrFalse;
-            textBox5.Visible = TrueOrFalse;
-
-
-            
+            textBox4.Visible = isVisible;
+            textBox5.Visible = isVisible;
         }
 
         private void ParametrsFormShown(object sender, EventArgs e)
@@ -455,36 +324,34 @@ namespace LaboratoryWork
         private void меньшеОптимальногоToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
-            RefreshPictureBoxs();
         }
 
         private void оптимальныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Consts.TypeFunctions = Enums.TypeFunction.E_Opt;
-            RefreshPictureBoxs();
         }
 
         private void критическийToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Consts.TypeFunctions = Enums.TypeFunction.E_Crit;
-            RefreshPictureBoxs();
         }
 
         private void декартоваяToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            imageBoxNew1.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
+            /*imageBoxNew1.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
             imageBoxNew2.CoordinateSystem = Enums.TypeCoordinateSystem.Cartesian;
-            RefreshPictureBoxs();
+            RefreshPictureBoxs();*/
         }
 
         private void полярнаяToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            imageBoxNew1.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
+            /*imageBoxNew1.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
             imageBoxNew2.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
-            RefreshPictureBoxs();
+            RefreshPictureBoxs();*/
         }
         private GraphFrom GraphFrom1;
         private GraphFrom GraphFrom2;
+        private GraphFrom GraphFrom3;
         private void btnGraphForm1_Click(object sender, EventArgs e)
         {
             GraphFrom1 = new GraphFrom();
@@ -495,6 +362,7 @@ namespace LaboratoryWork
             GraphFrom1.TextForFirstPolarCoordinate = "Значение ДН по радиальному направлению {0}";
             GraphFrom1.TextForSecondPolarCoordinate = "Полярный угол {0} град";
             GraphFrom1.NameFunction = "Нормированная ДН в плоскости, перпендикулярной витку";
+            //GraphFrom1.SetCoordinateSystem(Enums.TypeCoordinateSystem.Polar);
         }
 
         private void btnGraphForm2_Click(object sender, EventArgs e)
@@ -507,6 +375,20 @@ namespace LaboratoryWork
             GraphFrom2.TextForFirstPolarCoordinate = "Значение ДН по радиальному направлению {0}";
             GraphFrom2.TextForSecondPolarCoordinate = "Полярный угол {0} град";
             GraphFrom2.NameFunction = "Нормированная ДН в плоскости, содержащей витки";
+            //GraphFrom1.SetCoordinateSystem(Enums.TypeCoordinateSystem.Polar);
+        }
+
+        private void btnGraphForm3_Click(object sender, EventArgs e)
+        {
+            GraphFrom3 = new GraphFrom();
+            GraphFrom3.Show();
+            GraphFrom3.SetFunctionForCalculate((x) => { return -Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.r); });
+            GraphFrom3.TextForFirstCartesianCoordinate = "По оси X {0}";
+            GraphFrom3.TextForSecondCartesianCoordinate = "По оси Y {0}";
+            GraphFrom3.TextForFirstPolarCoordinate = "Величина поляризационной характеристики по радиальному направлению {0}";
+            GraphFrom3.TextForSecondPolarCoordinate = "Полярный угол {0} град";
+            GraphFrom3.NameFunction = "Поляризационный эллипс";
+            //GraphFrom1.SetCoordinateSystem(Enums.TypeCoordinateSystem.Polar);
         }
     }
 }

@@ -14,7 +14,7 @@
         private static float _S_a_f;
         private static float _A_a_f;
 
-        public static float f
+        public static float F
         {
             get { return _f; }
             set
@@ -34,7 +34,7 @@
                 Delegates.OnChangeConsts?.Invoke();
             }
         }
-        public static float a
+        public static float A
         {
             get { return _a; }
             set
@@ -52,7 +52,7 @@
                 Delegates.OnChangeConsts?.Invoke();
             }
         }
-        public static float d_f
+        public static float D_f
         {
             get { return _d_f; }
             set
@@ -93,30 +93,19 @@
         public static float L
         {
             get { return _L; }
-            set
-            {
-                _L = value;
-            }
+            set { _L = value; }
         }
 
         public static float S_a_f
         {
             get { return _S_a_f; }
-            set
-            {
-                _S_a_f = value;
-            }
+            set { _S_a_f = value; }
         }
 
         public static float A_a_f
         {
             get { return _A_a_f; }
-            set
-            {
-                _A_a_f = value;
-            }
+            set { _A_a_f = value; }
         }
-
-
     }
 }

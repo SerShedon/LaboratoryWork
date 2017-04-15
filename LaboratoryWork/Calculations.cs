@@ -6,24 +6,34 @@ namespace LaboratoryWork
 {
     class Calculations
     {
-        //перевод частоты f из мегагерц в герцы        
-        private static float Pi = (float) Math.PI;//для удобства
-        private static float d_f = Consts.d_f / Consts.f;//d_f и присвоение первоначального значения, позже для обсчета будет вызываться функция My_d_f
-//для вывода на форме графиков - коэффициентов
-        private static float My_k_f = 0;//для хранения значения коэффициента К, присвоение и чтение происходит из функции k_f
-
-        private static float f //частота в герцах (GraficForm.f в мегагерцах) задается через трекбар или текстбокс в GraficForm
+        /// <summary>
+        /// перевод частоты f из мегагерц в герцы
+        /// </summary>
+        private static float pi = (float) Math.PI;//для удобства
+        /// <summary>
+        /// d_f и присвоение первоначального значения, позже для обсчета будет вызываться функция My_d_f
+        /// </summary>
+        private static float d_f = Consts.D_f / Consts.F;        
+        /// <summary>
+        /// для хранения значения коэффициента К, присвоение и чтение происходит из функции k_f
+        /// </summary>
+        private static float my_k_f = 0;
+        /// <summary>
+        /// частота в герцах (GraficForm.f в мегагерцах) задается через трекбар или текстбокс в GraficForm
+        /// </summary>
+        private static float f
         {
-            get  {  return Consts.f * (float)Math.Pow(10, 6); }
+            get  { return Consts.F * (float)Math.Pow(10, 6); }
         }
-
-        public static float k_f//функция  чтения и записи коэффициента К
+        /// <summary>
+        /// коэффициент К
+        /// </summary>
+        public static float k_f
         {
-            get { return My_k_f;}
-            
+            get { return my_k_f;}            
             set
             {
-                My_k_f = 2F * Pi * value * (float)Math.Pow(10, 6) / (3 * (float)Math.Pow(10, 8));//(float)Math.Pow(10, 6) т.к. в GraficForm частота в мегагерцах, тут в герцах
+                my_k_f = 2F * pi * value / (3 * (float)Math.Pow(10, 2));//(float)Math.Pow(10, 6) т.к. в GraficForm частота в мегагерцах, тут в герцах
             }
         }
         public static void My_d_f(float d, float f) => d_f = d / f;
@@ -35,8 +45,8 @@ namespace LaboratoryWork
         public static void SetCoefficients()
         {
             Consts.L = 3F * (float)Math.Pow(10, 8) / f;
-            Consts.S_a_f = Consts.L * SinInRadians(Consts.a) ;
-            Consts.A_a_f = Consts.L * CosInRadians(Consts.a) / (2F * Pi);
+            Consts.S_a_f = Consts.L * SinInRadians(Consts.A) ;
+            Consts.A_a_f = Consts.L * CosInRadians(Consts.A) / (2F * pi);
         }
 
         private static Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>> generalFunctionsByNameFunc =
@@ -73,12 +83,12 @@ namespace LaboratoryWork
         /// <summary>
         /// Основная функция, которая выбирает, другие функции для просчета значения функции F в точке с аргументом X
         /// </summary>
-        /// <param name="Q">передавать значение Х</param>
+        /// <param name="q">передавать значение Х</param>
         /// <param name="typeFunction">передавать 1, 2 или 3 рисуется 3 разных графика в зависимости от кси E</param>
-        /// <param name="NameFunc">передвать "F_4" функция от фи , "F_Q"функция от тетта или "r" поляризационная характеристика</param>
+        /// <param name="nameFunc">передвать "F_4" функция от фи , "F_Q"функция от тетта или "r" поляризационная характеристика</param>
         /// <returns>возвращает значение функции в точке X</returns>
-        public static float GeneralFuncForDrawDec(float Q, Enums.TypeFunction typeFunction, Enums.NameFunction NameFunc)
-            => generalFunctionsByNameFunc[NameFunc](Q, typeFunction);
+        public static float GeneralFuncForDrawDec(float q, Enums.TypeFunction typeFunction, Enums.NameFunction nameFunc)
+            => generalFunctionsByNameFunc[nameFunc](q, typeFunction);
 
         /// <summary>
         /// в зависимости от типа спиральных антенн и вида кси (Е_а) выбираются фунции для просчета F от фи, тип спиральных антенн задается в GraficForm имеет значения 1 или 2
@@ -87,25 +97,23 @@ namespace LaboratoryWork
         /// <param name="typeFunction">тип функции в зависимости от вида кси (Е_а) принимает значение 1, 2 или 3</param>
         /// <returns></returns>
         public static float General_F_4_WithOutAbs(float x, Enums.TypeFunction typeFunction) 
-            => functionByTypeSpiralAntennasAndTypeFunction[Consts.TypeSpiralAntennas][typeFunction](E_a(Consts.a, typeFunction), x);
+            => functionByTypeSpiralAntennasAndTypeFunction[Consts.TypeSpiralAntennas][typeFunction](E_a(Consts.A, typeFunction), x);
 
         public static float General_F_4(float x, Enums.TypeFunction typeFunction)
             => Math.Abs(General_F_4_WithOutAbs(x, typeFunction));
 
         public static float General_F_Q(float x, Enums.TypeFunction typeFunction)
             => Math.Abs(General_F_4_WithOutAbs(x, typeFunction) * CosInRadians(x));
+        
+        public static float FuncSingleSpiralAntenna_E_LessOpt(float e_a1, float q)
+            => 1F / Consts.N * FuncInside(e_a1, q);
 
-        // для TypeSpiralAntennas == 1 одиночная спиральная антенна
-        public static float FuncSingleSpiralAntenna_E_LessOpt(float E_a1, float Q)
-            => 1F / Consts.N * FuncInside(E_a1, Q);
-
-        public static float FuncSingleSpiralAntenna_E_Opt(float E_a1, float Q)
-            => 1F / K(E_a1, Q) * FuncInside(E_a1, Q);
+        public static float FuncSingleSpiralAntenna_E_Opt(float e_a1, float Q)
+            => 1F / K(e_a1, Q) * FuncInside(e_a1, Q);
 
         public static float FuncSingleSpiralAntenna_E_Crit(float E_a1, float Q)
             => FuncInside(E_a1, Q);
-
-        // для TypeSpiralAntennas == 1 системы спиральных антенн
+                
         public static float FuncSystemSpiralAntennas_E_LessOpt(float E_a1, float Q)
             => 1F / Consts.N * FuncInside(E_a1, Q) * Fc_QfM(Q);
 
@@ -139,21 +147,21 @@ namespace LaboratoryWork
         /// <summary>
         /// основная часть математической функции
         /// </summary>
-        /// <param name="E_a">передаем кси </param>
-        /// <param name="Q">аргумент математической функции</param>
+        /// <param name="e_a">передаем кси </param>
+        /// <param name="q">аргумент математической функции</param>
         /// <returns></returns>
 
-        private static float FuncInside(float E_a, float Q)
+        private static float FuncInside(float e_a, float q)
         {
-            var argumentSinForDenominator = Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q));
+            var argumentSinForDenominator = pi * (e_a - SinInRadians(Consts.A) * CosInRadians(q));
             double funcInsideUp = Math.Sin (Consts.N * argumentSinForDenominator);
             double funcInsideDown = Math.Sin (argumentSinForDenominator);
-            for (float Dx = ParametrsForm.MyDx; funcInsideDown == 0; Dx++)
+            for (float Dx = ParametrsForm.Dx; funcInsideDown == 0; Dx++)
             {
-                funcInsideUp = Math.Sin(Consts.N * Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q + ParametrsForm.MyDx)));
-                funcInsideDown = Math.Sin(Pi * (E_a - SinInRadians(Consts.a) * CosInRadians(Q + ParametrsForm.MyDx)));
+                funcInsideUp = Math.Sin(Consts.N * pi * (e_a - SinInRadians(Consts.A) * CosInRadians(q + ParametrsForm.Dx)));
+                funcInsideDown = Math.Sin(pi * (e_a - SinInRadians(Consts.A) * CosInRadians(q + ParametrsForm.Dx)));
                 //выход из цикличности, если число проходов больше 100
-                if (Dx == ParametrsForm.MyDx * 100)
+                if (Dx == ParametrsForm.Dx * 100)
                 {
                     funcInsideDown = 0.01F;
                     MessageBox.Show("Возможна ошибка в отрисовке графиков, зациклилась функция FuncInside, число циклов 100");
@@ -166,65 +174,64 @@ namespace LaboratoryWork
         /// <summary>
         /// расчет коэффициента к для математической функции
         /// </summary>
-        /// <param name="E_a">передаем кси</param>
-        /// <param name="Q">аргумент</param>
+        /// <param name="e_a">передаем кси</param>
+        /// <param name="q">аргумент</param>
         /// <returns></returns>
-        private static float K(float E_a, float Q)
+        private static float K(float e_a, float q)
         {
-            float K_Up = (float)Math.Sin(Consts.N / 2F * (2F * Pi * SinInRadians(Consts.a) - 2F * Pi * E_a));
-            float K_Down = (float)Math.Sin(1F / 2F * (2F * Pi * SinInRadians(Consts.a) - 2F * Pi * E_a));
-            return K_Up / K_Down;
+            float k_Up = (float)Math.Sin(Consts.N / 2F * (2F * pi * SinInRadians(Consts.A) - 2F * pi * e_a));
+            float k_Down = (float)Math.Sin(1F / 2F * (2F * pi * SinInRadians(Consts.A) - 2F * pi * e_a));
+            return k_Up / k_Down;
         }
 
         /// <summary>
         /// вторая основная часть функции, испльзуется в расчетах, если TypeSpiralAntennas == 2
         /// </summary>
-        /// <param name="Q">аргумент математической функции</param>
+        /// <param name="q">аргумент математической функции</param>
         /// <returns></returns>
-        private static float Fc_QfM(float Q)
+        private static float Fc_QfM(float q)
         {
-            float Fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * SinInRadians(Q) / 2F);
-            float Fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * SinInRadians(Q) / 2F);
+            float fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * SinInRadians(q) / 2F);
+            float fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * SinInRadians(q) / 2F);
             
-            for (float Dx = ParametrsForm.MyDx; Fc_QfM_Down == 0; Dx++)
+            for (float dx = ParametrsForm.Dx; fc_QfM_Down == 0; dx++)
             {
-                Fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * SinInRadians(Q - Dx) / 2F);
-                Fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * SinInRadians(Q - Dx) / 2F);
+                fc_QfM_Up = (float)Math.Sin(Consts.M * k_f * d_f * SinInRadians(q - dx) / 2F);
+                fc_QfM_Down = Consts.M * (float)Math.Sin(k_f * d_f * SinInRadians(q - dx) / 2F);
                 //выход из цикличности, если число проходов больше 100
-                if (Dx == ParametrsForm.MyDx * 100)
+                if (dx == ParametrsForm.Dx * 100)
                 {
-                    Fc_QfM_Down = 0.01F;
+                    fc_QfM_Down = 0.01F;
                     MessageBox.Show("Возможна ошибка в отрисовке графиков, зациклилась функция Fc_QfM_, число циклов 100");
                 }
             }  
-            return Fc_QfM_Up / Fc_QfM_Down;
+            return fc_QfM_Up / fc_QfM_Down;
         }
         /// <summary>
         /// математическая функция для просчета поляризационной характеристики
         /// </summary>
-        /// <param name="Fi">аргумент (для этой программы это тетта Q)</param>
-        /// <param name="TypeFunction">передаем тип функции зависит от кси и может быть 1, 2 или 3</param>
+        /// <param name="fi">аргумент (для этой программы это тетта Q)</param>
+        /// <param name="typeFunction">передаем тип функции зависит от кси и может быть 1, 2 или 3</param>
         /// <returns></returns>
-        public static float PolarCharacteristic(float Fi, Enums.TypeFunction TypeFunction)
+        public static float PolarCharacteristic(float fi, Enums.TypeFunction typeFunction)
         {
-            float F_4 = General_F_4_WithOutAbs(Consts.Q, TypeFunction);
-            float F_4_abs = Math.Abs(F_4);
-            float F_Q_abs = Math.Abs(F_4 * CosInRadians(Consts.Q));
+            float f_4 = General_F_4_WithOutAbs(Consts.Q, typeFunction);
+            float f_4_abs = Math.Abs(f_4);
+            float f_Q_abs = Math.Abs(f_4 * CosInRadians(Consts.Q));
             float a = 1;
-            if (F_Q_abs == 0)
-                F_Q_abs = 0.0001F;
-            float m = F_4_abs / F_Q_abs;
+            if (f_Q_abs == 0)
+                f_Q_abs = 0.0001F;
+            float m = f_4_abs / f_Q_abs;
 
             if (m > 1000)
                 m = 1000;
 
             float b = m * a;
             float e = b * b > 1 ? (float)Math.Sqrt(1 - a * a / (b * b)) : (float)Math.Sqrt(0.1);
-            var radicand = 1 - e * e * CosInRadians(Fi) * CosInRadians(Fi);
+            var radicand = 1 - e * e * CosInRadians(fi) * CosInRadians(fi);
             float r = radicand < 0 //для защиты от отрицательного подкоренного выражения
                 ? b / (float)Math.Sqrt(radicand)
                 : b;
-
             return r;
         }
         
