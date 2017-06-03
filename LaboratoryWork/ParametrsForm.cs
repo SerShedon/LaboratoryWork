@@ -19,27 +19,7 @@ namespace LaboratoryWork
             InitializeComponent();
             GetValuesFromTrackBars();
             dx = 1F;
-        }
-        private void InitializeImageBoxNew(GraphBox graphBox)
-        {
-            graphBox.CoordinateSystem = Enums.TypeCoordinateSystem.Polar;
-            graphBox.X0_Pol = graphBox.Width / 2;
-            graphBox.Y0_Pol = graphBox.Height / 2;
 
-            graphBox.X0_Dec = graphBox.Width / 2;
-            graphBox.Y0_Dec = graphBox.Height;
-
-            graphBox.Degrees = 30;
-            graphBox.StepRadius = 0.2F;
-
-            graphBox.CountLineX = 10;
-            graphBox.CountLineY = 10;
-
-            graphBox.Coef_X_Cartesian = graphBox.Width / 360F;
-            graphBox.Coef_Y_Cartesian = graphBox.Height / 1F;
-
-            graphBox.Coef_X_Polar = graphBox.Width / 360F;
-            graphBox.Coef_Y_Polar = graphBox.Height / 2F;
             PenDrawGrid = new Pen(Color.Green, 1);
             PenDrawAxis = new Pen(Color.Black, 2);
             PenDrawGraph = new Pen(Color.Red, 2);
