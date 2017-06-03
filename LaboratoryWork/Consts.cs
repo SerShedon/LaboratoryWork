@@ -1,31 +1,30 @@
 ﻿namespace LaboratoryWork
 {
-    class Consts
+    public class Consts
     {
-        private static float _f;
-        private static float _N;
-        private static float _a;
-        private static float _M;
-        private static float _d_f;
-        private static float _Q;
-        private static Enums.TypeSpiralAntennas _TypeSpiralAntennas;
-        private static Enums.TypeFunction _TypeFunctions;
-        private static float _L;
-        private static float _S_a_f;
-        private static float _A_a_f;
+        private float _f;
+        private float _N;
+        private float _a;
+        private float _M;
+        private float _d_f;
+        private float _Q;
+        private Enums.TypeSpiralAntennas _TypeSpiralAntennas;
+        private Enums.TypeFunction _TypeFunctions;
+        private float _L;
+        private float _S_a_f;
+        private float _A_a_f;
 
-        public static float F
+        public float F
         {
             get { return _f; }
             set
             {
                 _f = value;
-                Calculations.SetCoefficients();
                 Delegates.OnChangeConsts?.Invoke();
             }
         }        
 
-        public static float N
+        public float N
         {
             get { return _N; }
             set
@@ -34,7 +33,7 @@
                 Delegates.OnChangeConsts?.Invoke();
             }
         }
-        public static float A
+        public float A
         {
             get { return _a; }
             set
@@ -43,7 +42,7 @@
                 Delegates.OnChangeConsts?.Invoke();
             }
         }
-        public static float M
+        public float M
         {
             get { return _M; }
             set
@@ -52,7 +51,7 @@
                 Delegates.OnChangeConsts?.Invoke();
             }
         }
-        public static float D_f
+        public float D_f
         {
             get { return _d_f; }
             set
@@ -61,7 +60,7 @@
                 Delegates.OnChangeConsts?.Invoke();
             }
         }
-        public static float Q
+        public float Q
         {
             get { return _Q; }
             set
@@ -70,7 +69,7 @@
                 Delegates.OnChangeConsts?.Invoke();
             }
         }
-        public static Enums.TypeSpiralAntennas TypeSpiralAntennas
+        public Enums.TypeSpiralAntennas TypeSpiralAntennas
         {
             get { return _TypeSpiralAntennas; }
             set
@@ -80,7 +79,7 @@
             }
         }
 
-        public static Enums.TypeFunction TypeFunctions
+        public Enums.TypeFunction TypeFunctions
         {
             get { return _TypeFunctions; }
             set
@@ -90,19 +89,19 @@
             }
         }
 
-        public static float L
+        public float L
         {
             get { return _L; }
             set { _L = value; }
         }
 
-        public static float S_a_f
+        public float S_a_f
         {
             get { return _S_a_f; }
             set { _S_a_f = value; }
         }
 
-        public static float A_a_f
+        public float A_a_f
         {
             get { return _A_a_f; }
             set { _A_a_f = value; }

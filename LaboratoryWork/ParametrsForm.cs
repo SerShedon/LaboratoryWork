@@ -6,9 +6,12 @@ namespace LaboratoryWork
 {
     public partial class ParametrsForm : Form
     {
-       
-        public ParametrsForm()
+        private Consts consts;
+        private Calculations calculations;
+        public ParametrsForm(Consts consts, Calculations calculations)
         {
+            this.consts = consts;
+            this.calculations = calculations;
             InitializeComponent();
             GetValuesFromTrackBars();
             
@@ -61,28 +64,28 @@ namespace LaboratoryWork
 
         private void GetValuesFromTrackBars()
         {
-            Consts.F = trackBar1?.Value ?? 0;
-            Consts.N = trackBar2?.Value ?? 0;
-            Consts.A = trackBar3?.Value ?? 0;
-            Consts.M = trackBar4?.Value ?? 0;
-            Consts.D_f = trackBar5?.Value ?? 0;
-            Consts.Q = trackBar6?.Value ?? 0;
+            consts.F = trackBar1?.Value ?? 0;
+            consts.N = trackBar2?.Value ?? 0;
+            consts.A = trackBar3?.Value ?? 0;
+            consts.M = trackBar4?.Value ?? 0;
+            consts.D_f = trackBar5?.Value ?? 0;
+            consts.Q = trackBar6?.Value ?? 0;
         }
 
         private void WriteValuesInTextBoxs()
         {
-            textBox1.Text = Consts.F.ToString();
-            textBox2.Text = Consts.N.ToString();
-            textBox3.Text = Consts.A.ToString();
-            textBox4.Text = Consts.M.ToString();
-            textBox5.Text = (Consts.D_f / 100f).ToString("0.00");
-            textBox6.Text = Consts.Q.ToString();
+            textBox1.Text = consts.F.ToString();
+            textBox2.Text = consts.N.ToString();
+            textBox3.Text = consts.A.ToString();
+            textBox4.Text = consts.M.ToString();
+            textBox5.Text = (consts.D_f / 100f).ToString("0.00");
+            textBox6.Text = consts.Q.ToString();
         }
 
         private void SetValueInCalculations()
         {
-            Calculations.k_f = Consts.F;            
-            Calculations.My_d_f(Consts.D_f, Consts.F);            
+            calculations.k_f = consts.F;            
+            calculations.My_d_f(consts.D_f, consts.F);            
         }
         #endregion
 
@@ -112,42 +115,42 @@ namespace LaboratoryWork
         #region
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            Consts.F = trackBar1.Value;
+            consts.F = trackBar1.Value;
 
             RefreshConstants();
-            textBox1.Text = Consts.F.ToString();
+            textBox1.Text = consts.F.ToString();
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
-            Consts.N = trackBar2.Value;
+            consts.N = trackBar2.Value;
             textBox2.Text = trackBar2.Value.ToString();
         }
 
         private void trackBar3_Scroll(object sender, EventArgs e)
         {
-            Consts.A = trackBar3.Value;
+            consts.A = trackBar3.Value;
             textBox3.Text = trackBar3.Value.ToString();
         }
 
         private void trackBar4_Scroll(object sender, EventArgs e)
         {
-            Consts.M = trackBar4.Value;
+            consts.M = trackBar4.Value;
             textBox4.Text = trackBar4.Value.ToString();
         }
 
         private void trackBar5_Scroll(object sender, EventArgs e)
         {
-            Consts.D_f = trackBar5.Value ;
+            consts.D_f = trackBar5.Value ;
             
-            textBox5.Text = (Consts.D_f /100.0).ToString("0.00");
+            textBox5.Text = (consts.D_f /100.0).ToString("0.00");
         }
 
         private void trackBar6_Scroll(object sender, EventArgs e)
         {
-            Consts.Q = trackBar6.Value;
+            consts.Q = trackBar6.Value;
 
-            textBox6.Text = Consts.Q.ToString();
+            textBox6.Text = consts.Q.ToString();
         }
         #endregion
         
@@ -155,17 +158,17 @@ namespace LaboratoryWork
         #region
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
+            consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.E_Opt;
+            consts.TypeFunctions = Enums.TypeFunction.E_Opt;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.E_Crit;
+            consts.TypeFunctions = Enums.TypeFunction.E_Crit;
         }
         #endregion
 
@@ -248,9 +251,9 @@ namespace LaboratoryWork
 
         private void RefreshConstants()
         {
-            textBox9.Text = Consts.L.ToString("0.000");
-            textBox7.Text = Consts.S_a_f.ToString("0.000");
-            textBox8.Text = Consts.A_a_f.ToString("0.000");
+            textBox9.Text = consts.L.ToString("0.000");
+            textBox7.Text = consts.S_a_f.ToString("0.000");
+            textBox8.Text = consts.A_a_f.ToString("0.000");
         }
         #endregion
 
@@ -263,7 +266,7 @@ namespace LaboratoryWork
         private void VisibilityComponents()
         {
             bool isVisible = false;
-            if (Consts.TypeSpiralAntennas == Enums.TypeSpiralAntennas.System)
+            if (consts.TypeSpiralAntennas == Enums.TypeSpiralAntennas.System)
                 isVisible = true;
 
             label4.Visible = isVisible;
@@ -305,17 +308,17 @@ namespace LaboratoryWork
 
         private void меньшеОптимальногоToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
+            consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
         }
 
         private void оптимальныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.E_Opt;
+            consts.TypeFunctions = Enums.TypeFunction.E_Opt;
         }
 
         private void критическийToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Consts.TypeFunctions = Enums.TypeFunction.E_Crit;
+            consts.TypeFunctions = Enums.TypeFunction.E_Crit;
         }
 
         private void декартоваяToolStripMenuItem_Click(object sender, EventArgs e)
@@ -338,7 +341,7 @@ namespace LaboratoryWork
         {
             GraphFrom1 = new GraphFrom();
             GraphFrom1.Show();
-            GraphFrom1.SetFunctionForCalculate((x) => { return -Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_4); });
+            GraphFrom1.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.F_4); });
             GraphFrom1.TextForFirstCartesianCoordinate = "По оси X {0}";
             GraphFrom1.TextForSecondCartesianCoordinate = "По оси Y {0}";
             GraphFrom1.TextForFirstPolarCoordinate = "Значение ДН по радиальному направлению {0}";
@@ -351,7 +354,7 @@ namespace LaboratoryWork
         {
             GraphFrom2 = new GraphFrom();
             GraphFrom2.Show();
-            GraphFrom2.SetFunctionForCalculate((x) => { return -Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.F_Q); });
+            GraphFrom2.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.F_Q); });
             GraphFrom2.TextForFirstCartesianCoordinate = "По оси X {0}";
             GraphFrom2.TextForSecondCartesianCoordinate = "По оси Y {0}";
             GraphFrom2.TextForFirstPolarCoordinate = "Значение ДН по радиальному направлению {0}";
@@ -364,7 +367,7 @@ namespace LaboratoryWork
         {
             GraphFrom3 = new GraphFrom();
             GraphFrom3.Show();
-            GraphFrom3.SetFunctionForCalculate((x) => { return -Calculations.GeneralFuncForDrawDec(x, Consts.TypeFunctions, Enums.NameFunction.r); });
+            GraphFrom3.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.r); });
             GraphFrom3.TextForFirstCartesianCoordinate = "По оси X {0}";
             GraphFrom3.TextForSecondCartesianCoordinate = "По оси Y {0}";
             GraphFrom3.TextForFirstPolarCoordinate = "Величина поляризационной характеристики по радиальному направлению {0}";

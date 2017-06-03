@@ -13,7 +13,10 @@ namespace LaboratoryWork
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            var consts = new Consts();
+            var calculations = new Calculations(consts);
+            //подумать над переносом сюда всех форм
+            Application.Run(new MainForm(consts, calculations));
         }
     }
 }

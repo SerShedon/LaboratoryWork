@@ -1,24 +1,31 @@
 ﻿using System;
 using System.Windows.Forms;
 
-
 namespace LaboratoryWork
 {
     public partial class MainForm : Form
     {
+        private Consts consts;
+        private Calculations calculations;
+        public Form MyTestForm { get; set; }
+        public Form MyGrafigForm { get; set; }
+        public Form MyBootForm { get; set; }
 
-        public MainForm()
+        public MainForm(Consts consts, Calculations calculations)
         {
-            Form MyBootForm = new BootForm();
-            MyBootForm.ShowDialog();//окно с информацией о программе            
+            this.consts = consts;
+            this.calculations = calculations;
+            MyBootForm = new BootForm();
+            MyTestForm = new TestForm();
+            MyGrafigForm = new ParametrsForm(consts, calculations);
+            MyBootForm.ShowDialog();//окно с информацией о программе
             
             InitializeComponent();
 
             //для того чтобы вызывать func функцию из TestForm 
             Delegates.EnableButtonsGraphic = new Delegates.MyEvent(ShowControl);
         }
-        public Form MyTestForm = new TestForm();
-        public Form MyGrafigForm = new ParametrsForm();
+        
 
         void ShowControl(int Button)
         {
