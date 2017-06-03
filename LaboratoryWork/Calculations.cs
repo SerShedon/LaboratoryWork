@@ -6,24 +6,24 @@ namespace LaboratoryWork
     public class Calculations
     {
         private Consts consts;
-        private Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>> generalFunctionsByNameFunc;
-        private Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float>>> functionByTypeSpiralAntennasAndTypeFunction;
+        private Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float, float>> generalFunctionsByNameFunc;
+        private Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float, float>>> functionByTypeSpiralAntennasAndTypeFunction;
 
         public Calculations(Consts consts)
         {
             this.consts = consts;
-            generalFunctionsByNameFunc = new Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float>>
+            generalFunctionsByNameFunc = new Dictionary<Enums.NameFunction, Func<float, Enums.TypeFunction, float, float>>
             {
                 { Enums.NameFunction.F_4, General_F_4},
                 { Enums.NameFunction.F_Q, General_F_Q},
                 { Enums.NameFunction.r, PolarCharacteristic},
             };
 
-            functionByTypeSpiralAntennasAndTypeFunction = new Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float>>>
+            functionByTypeSpiralAntennasAndTypeFunction = new Dictionary<Enums.TypeSpiralAntennas, Dictionary<Enums.TypeFunction, Func<float, float, float, float>>>
             {
                 {
                     Enums.TypeSpiralAntennas.Single,
-                    new Dictionary<Enums.TypeFunction, Func<float, float, float>>
+                    new Dictionary<Enums.TypeFunction, Func<float, float, float, float>>
                     {
                         { Enums.TypeFunction.E_LessOpt, FuncSingleSpiralAntenna_E_LessOpt },
                         { Enums.TypeFunction.E_Opt, FuncSingleSpiralAntenna_E_Opt },
@@ -32,7 +32,7 @@ namespace LaboratoryWork
                 },
                 {
                     Enums.TypeSpiralAntennas.System,
-                    new Dictionary<Enums.TypeFunction, Func<float, float, float>>
+                    new Dictionary<Enums.TypeFunction, Func<float, float, float, float>>
                     {
                         { Enums.TypeFunction.E_LessOpt, FuncSystemSpiralAntennas_E_LessOpt },
                         { Enums.TypeFunction.E_Opt, FuncSystemSpiralAntennas_E_Opt },
@@ -98,8 +98,8 @@ namespace LaboratoryWork
         /// <param name="typeFunction">передавать 1, 2 или 3 рисуется 3 разных графика в зависимости от кси E</param>
         /// <param name="nameFunc">передвать "F_4" функция от фи , "F_Q"функция от тетта или "r" поляризационная характеристика</param>
         /// <returns>возвращает значение функции в точке X</returns>
-        public float GeneralFuncForDrawDec(float q, Enums.TypeFunction typeFunction, Enums.NameFunction nameFunc)
-            => generalFunctionsByNameFunc[nameFunc](q, typeFunction);
+        public float GeneralFuncForDrawDec(float q, Enums.TypeFunction typeFunction, Enums.NameFunction nameFunc, float dx)
+            => generalFunctionsByNameFunc[nameFunc](q, typeFunction, dx);
 
         /// <summary>
         /// в зависимости от типа спиральных антенн и вида кси (Е_а) выбираются фунции для просчета F от фи, тип спиральных антенн задается в GraficForm имеет значения 1 или 2
@@ -107,32 +107,32 @@ namespace LaboratoryWork
         /// <param name="x">аргумент функции - (тут)Q</param>
         /// <param name="typeFunction">тип функции в зависимости от вида кси (Е_а) принимает значение 1, 2 или 3</param>
         /// <returns></returns>
-        public float General_F_4_WithOutAbs(float x, Enums.TypeFunction typeFunction) 
-            => functionByTypeSpiralAntennasAndTypeFunction[consts.TypeSpiralAntennas][typeFunction](E_a(consts.A, typeFunction), x);
+        public float General_F_4_WithOutAbs(float x, Enums.TypeFunction typeFunction, float dx)
+            => functionByTypeSpiralAntennasAndTypeFunction[consts.TypeSpiralAntennas][typeFunction](E_a(consts.A, typeFunction), x, dx);
 
-        public float General_F_4(float x, Enums.TypeFunction typeFunction)
-            => Math.Abs(General_F_4_WithOutAbs(x, typeFunction));
+        public float General_F_4(float x, Enums.TypeFunction typeFunction, float dx)
+            => Math.Abs(General_F_4_WithOutAbs(x, typeFunction, dx));
 
-        public float General_F_Q(float x, Enums.TypeFunction typeFunction)
-            => Math.Abs(General_F_4_WithOutAbs(x, typeFunction) * CosInRadians(x));
+        public float General_F_Q(float x, Enums.TypeFunction typeFunction, float dx)
+            => Math.Abs(General_F_4_WithOutAbs(x, typeFunction, dx) * CosInRadians(x));
         
-        public float FuncSingleSpiralAntenna_E_LessOpt(float e_a1, float q)
-            => 1F / consts.N * FuncInside(e_a1, q);
+        public float FuncSingleSpiralAntenna_E_LessOpt(float e_a1, float q, float dx)
+            => 1F / consts.N * FuncInside(e_a1, q, dx);
 
-        public float FuncSingleSpiralAntenna_E_Opt(float e_a1, float Q)
-            => 1F / K(e_a1, Q) * FuncInside(e_a1, Q);
+        public float FuncSingleSpiralAntenna_E_Opt(float e_a1, float Q, float dx)
+            => 1F / K(e_a1, Q) * FuncInside(e_a1, Q, dx);
 
-        public float FuncSingleSpiralAntenna_E_Crit(float E_a1, float Q)
-            => FuncInside(E_a1, Q);
+        public float FuncSingleSpiralAntenna_E_Crit(float E_a1, float Q, float dx)
+            => FuncInside(E_a1, Q, dx);
                 
-        public float FuncSystemSpiralAntennas_E_LessOpt(float E_a1, float Q)
-            => 1F / consts.N * FuncInside(E_a1, Q) * Fc_QfM(Q);
+        public float FuncSystemSpiralAntennas_E_LessOpt(float E_a1, float Q, float dx)
+            => 1F / consts.N * FuncInside(E_a1, Q, dx) * Fc_QfM(Q, dx);
 
-        public float FuncSystemSpiralAntennas_E_Opt(float E_a1, float Q)
-            => 1F / K(E_a1, Q) * FuncInside(E_a1, Q) * Fc_QfM(Q);
+        public float FuncSystemSpiralAntennas_E_Opt(float E_a1, float Q, float dx)
+            => 1F / K(E_a1, Q) * FuncInside(E_a1, Q, dx) * Fc_QfM(Q, dx);
 
-        public float FuncSystemSpiralAntennas_E_Crit(float E_a1, float Q)
-            => FuncInside(E_a1, Q) * Fc_QfM(Q);
+        public float FuncSystemSpiralAntennas_E_Crit(float E_a1, float Q, float dx)
+            => FuncInside(E_a1, Q, dx) * Fc_QfM(Q, dx);
 
         /// <summary>
         /// расчет кси в зависимости от вида фукции 
@@ -162,11 +162,11 @@ namespace LaboratoryWork
         /// <param name="q">аргумент математической функции</param>
         /// <returns></returns>
 
-        private float FuncInside(float e_a, float q)
+        private float FuncInside(float e_a, float q, float dx)
         {
-            Func<float, float, double> getNumerator = (x, dx) => Math.Sin(consts.N * (pi * (e_a - SinInRadians(consts.A) * CosInRadians(x + dx))));
-            Func<float, float, double> getDenominator = (x, dx) => Math.Sin(pi * (e_a - SinInRadians(consts.A) * CosInRadians(x + dx)));
-            return CalculateFraction(getNumerator, getDenominator, q, ParametrsForm.Dx);
+            Func<float, float, double> getNumerator = (x, _dx) => Math.Sin(consts.N * (pi * (e_a - SinInRadians(consts.A) * CosInRadians(x + _dx))));
+            Func<float, float, double> getDenominator = (x, _dx) => Math.Sin(pi * (e_a - SinInRadians(consts.A) * CosInRadians(x + _dx)));
+            return CalculateFraction(getNumerator, getDenominator, q, dx);
         }
         /// <summary>
         /// расчет коэффициента к для математической функции
@@ -186,11 +186,11 @@ namespace LaboratoryWork
         /// </summary>
         /// <param name="q">аргумент математической функции</param>
         /// <returns></returns>
-        private float Fc_QfM(float q)
+        private float Fc_QfM(float q, float Dx)
         {
             Func<float, float, double> getNumerator = (x, dx) => Math.Sin(consts.M * k_f * d_f * SinInRadians(x + dx) / 2F);
             Func<float, float, double> getDenominator = (x, dx) => consts.M * Math.Sin(k_f * d_f * SinInRadians(x + dx) / 2F);
-            return CalculateFraction(getNumerator, getDenominator, q, ParametrsForm.Dx);
+            return CalculateFraction(getNumerator, getDenominator, q, Dx);
         }
 
         private float CalculateFraction(Func<float, float, double> getNumerator, Func<float, float, double> getDenominator, float argument, float dx)
@@ -203,7 +203,7 @@ namespace LaboratoryWork
                 newDx = i * dx;
                 denominator = getDenominator(argument, newDx);
 
-                if (newDx == ParametrsForm.Dx * CountCycliesBeforeThrowError)
+                if (newDx == dx * CountCycliesBeforeThrowError)
                     throw (new Exception(String.Format("Зациклилась функция {0}, количество циклов = {1}", nameof(Fc_QfM), CountCycliesBeforeThrowError)));
             }
             var numerator = getNumerator(argument, newDx);
@@ -216,9 +216,9 @@ namespace LaboratoryWork
         /// <param name="fi">аргумент (для этой программы это тетта Q)</param>
         /// <param name="typeFunction">передаем тип функции зависит от кси и может быть 1, 2 или 3</param>
         /// <returns></returns>
-        public float PolarCharacteristic(float fi, Enums.TypeFunction typeFunction)
+        public float PolarCharacteristic(float fi, Enums.TypeFunction typeFunction, float dx)
         {
-            float f_4 = General_F_4_WithOutAbs(consts.Q, typeFunction);
+            float f_4 = General_F_4_WithOutAbs(consts.Q, typeFunction, dx);
             float f_4_abs = Math.Abs(f_4);
             float f_Q_abs = Math.Abs(f_4 * CosInRadians(consts.Q));
             float a = 1;

@@ -14,7 +14,7 @@ namespace LaboratoryWork
             this.calculations = calculations;
             InitializeComponent();
             GetValuesFromTrackBars();
-            
+            dx = 1F;
         }
         private void InitializeImageBoxNew(GraphBox graphBox)
         {
@@ -40,11 +40,11 @@ namespace LaboratoryWork
         
         //инициализация новых переменных, присвоением им значений 
         #region
-        private static float dx = 1F;
+        private float dx;
         /// <summary>
         /// шаг
         /// </summary>
-        public static float Dx
+        public float Dx
         {
             get { return dx;}
         }
@@ -341,7 +341,7 @@ namespace LaboratoryWork
         {
             GraphFrom1 = new GraphFrom();
             GraphFrom1.Show();
-            GraphFrom1.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.F_4); });
+            GraphFrom1.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.F_4, Dx); });
             GraphFrom1.TextForFirstCartesianCoordinate = "По оси X {0}";
             GraphFrom1.TextForSecondCartesianCoordinate = "По оси Y {0}";
             GraphFrom1.TextForFirstPolarCoordinate = "Значение ДН по радиальному направлению {0}";
@@ -354,7 +354,7 @@ namespace LaboratoryWork
         {
             GraphFrom2 = new GraphFrom();
             GraphFrom2.Show();
-            GraphFrom2.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.F_Q); });
+            GraphFrom2.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.F_Q, Dx); });
             GraphFrom2.TextForFirstCartesianCoordinate = "По оси X {0}";
             GraphFrom2.TextForSecondCartesianCoordinate = "По оси Y {0}";
             GraphFrom2.TextForFirstPolarCoordinate = "Значение ДН по радиальному направлению {0}";
@@ -367,7 +367,7 @@ namespace LaboratoryWork
         {
             GraphFrom3 = new GraphFrom();
             GraphFrom3.Show();
-            GraphFrom3.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.r); });
+            GraphFrom3.SetFunctionForCalculate((x) => { return -calculations.GeneralFuncForDrawDec(x, consts.TypeFunctions, Enums.NameFunction.r, Dx); });
             GraphFrom3.TextForFirstCartesianCoordinate = "По оси X {0}";
             GraphFrom3.TextForSecondCartesianCoordinate = "По оси Y {0}";
             GraphFrom3.TextForFirstPolarCoordinate = "Величина поляризационной характеристики по радиальному направлению {0}";
