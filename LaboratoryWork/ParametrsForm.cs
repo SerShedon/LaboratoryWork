@@ -25,7 +25,6 @@ namespace LaboratoryWork
             PenDrawGraph = new Pen(Color.Red, 2);
         }
         
-        //инициализация новых переменных, присвоением им значений 
         #region
         private float dx;
         /// <summary>
@@ -89,11 +88,6 @@ namespace LaboratoryWork
         }
         #endregion
        
-
-        //дейсвтия при  изменении положения ползунка в  trackBars
-        //переприсвоение значений для переменных в функции графиков
-        //отрисовка новой функции в pictureBoxs
-        //вывод значений трекбара в textboxs
         #region
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
@@ -230,7 +224,6 @@ namespace LaboratoryWork
         //рефреши
         #region
         
-
         private void RefreshConstants()
         {
             textBox9.Text = consts.L.ToString("0.000");
