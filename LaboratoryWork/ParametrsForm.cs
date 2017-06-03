@@ -8,6 +8,10 @@ namespace LaboratoryWork
     {
         private Consts consts;
         private Calculations calculations;
+        private Pen PenDrawGrid;
+        private Pen PenDrawAxis;
+        private Pen PenDrawGraph;
+
         public ParametrsForm(Consts consts, Calculations calculations)
         {
             this.consts = consts;
@@ -36,6 +40,9 @@ namespace LaboratoryWork
 
             graphBox.Coef_X_Polar = graphBox.Width / 360F;
             graphBox.Coef_Y_Polar = graphBox.Height / 2F;
+            PenDrawGrid = new Pen(Color.Green, 1);
+            PenDrawAxis = new Pen(Color.Black, 2);
+            PenDrawGraph = new Pen(Color.Red, 2);
         }
         
         //инициализация новых переменных, присвоением им значений 
@@ -48,11 +55,6 @@ namespace LaboratoryWork
         {
             get { return dx;}
         }
-
-        //ToDo: подумать об автоматическом масштабировани, например при Consts.TypeFunctions == Enums.TypeFunction.E_Crit, нужно уменьшить коэффициент Coef_Y = Coef_Y / 3.5F;
-        Pen PenDrawGrid = new Pen(Color.Green, 1);
-        Pen PenDrawAxis = new Pen(Color.Black, 2);
-        Pen PenDrawGraph = new Pen(Color.Red, 2);
                 
         private void ParametrsFormLoad(object sender, EventArgs e)
         {
