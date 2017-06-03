@@ -32,25 +32,13 @@ namespace LaboratoryWork
             ControlVisible(true);
         }
 
-        private void ControlVisible(bool TrueOrFalse)
+        private void ControlVisible(bool isVisible)
         {
-            if (TrueOrFalse == true)
-            {
-                ButtonGraphic1.Visible = true;
-                ButtonGraphic2.Visible = true;
-                label1.Visible = true;
-            }
-            else
-            {
-                ButtonGraphic1.Visible = false;
-                ButtonGraphic2.Visible = false;
-                label1.Visible = false;
-            }
+            ButtonGraphic1.Visible = isVisible;
+            ButtonGraphic2.Visible = isVisible;
+            label1.Visible = isVisible;
         }
         
-
-        //раскоменить если будет несколько тестов
-        //показывет форму для тестирования
         private void button2_Click(object sender, EventArgs e)
         {
             MyTestForm.ShowDialog();
@@ -58,35 +46,27 @@ namespace LaboratoryWork
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //задаем тип спиральной антенны и тип функции
-            Consts.TypeSpiralAntennas = Enums.TypeSpiralAntennas.Single;
-            Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
-            //показываем форму с графиками
-            MyGrafigForm.Show();
+            consts.TypeSpiralAntennas = Enums.TypeSpiralAntennas.Single;
+            consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
 
+            MyGrafigForm.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //задаем тип спиральной антенны и тип функции
-            Consts.TypeSpiralAntennas = Enums.TypeSpiralAntennas.System;
-            Consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
-            //показываем форму с графиками
+            consts.TypeSpiralAntennas = Enums.TypeSpiralAntennas.System;
+            consts.TypeFunctions = Enums.TypeFunction.E_LessOpt;
+
             MyGrafigForm.ShowDialog();
         }
         // читерские кнопочки для отображения кнопок с графиками в обход верного выполненого тестирования
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {   
-            //показать
+        {
             if (e.KeyCode == Keys.F12)
-            {
                 ControlVisible(true);
-            }
-            //скрыть
+
             if (e.KeyCode == Keys.F11)
-            {
                 ControlVisible(false);
-            }
         }
 
         private void краткиеТеоритическиеСведенияToolStripMenuItem_Click(object sender, EventArgs e)
