@@ -40,7 +40,7 @@ namespace LaboratoryWork
             GetValuesFromTrackBars();
             WriteValuesInTextBoxs();
             SetValueInCalculations();
-            RefreshConstants();
+            ShowPolarizationСharacteristics();
         }
 
         private void GetValuesFromTrackBars()
@@ -92,9 +92,8 @@ namespace LaboratoryWork
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             consts.F = trackBar1.Value;
-
-            RefreshConstants();
             textBox1.Text = consts.F.ToString();
+            ShowPolarizationСharacteristics();
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
@@ -224,11 +223,11 @@ namespace LaboratoryWork
         //рефреши
         #region
         
-        private void RefreshConstants()
+        private void ShowPolarizationСharacteristics()
         {
-            textBox9.Text = consts.L.ToString("0.000");
-            textBox7.Text = consts.S_a_f.ToString("0.000");
-            textBox8.Text = consts.A_a_f.ToString("0.000");
+            textBox9.Text = calculations.L.ToString("0.000");
+            textBox7.Text = calculations.S_a_f.ToString("0.000");
+            textBox8.Text = calculations.A_a_f.ToString("0.000");
         }
         #endregion
 

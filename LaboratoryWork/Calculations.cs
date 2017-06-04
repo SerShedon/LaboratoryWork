@@ -80,16 +80,19 @@ namespace LaboratoryWork
             d_f = d / f;
         }
 
-        //ToDo переписать через события, а так же начать использовать
-        /// <summary>
-        /// вычисление конструктивных параметров
-        /// </summary>
-        /// <param name="Q"></param>
-        public void SetCoefficients()
+        public float L
         {
-            consts.L = 3F * (float)Math.Pow(10, 8) / f;
-            consts.S_a_f = consts.L * SinInRadians(consts.A) ;
-            consts.A_a_f = consts.L * CosInRadians(consts.A) / (2F * pi);
+            get { return 3F * (float)Math.Pow(10, 8) / f; }
+        }
+
+        public float S_a_f
+        {
+            get { return L * SinInRadians(consts.A); }
+        }
+
+        public float A_a_f
+        {
+            get { return L * CosInRadians(consts.A) / (2F * pi); }
         }
 
         /// <summary>

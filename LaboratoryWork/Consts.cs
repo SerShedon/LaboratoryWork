@@ -88,23 +88,5 @@
                 Delegates.OnChangeConsts?.Invoke();
             }
         }
-
-        public float L
-        {
-            get { return _L; }
-            set { _L = value; }
-        }
-
-        public float S_a_f
-        {
-            get { return _S_a_f; }
-            set { _S_a_f = value; }
-        }
-
-        public float A_a_f
-        {
-            get { return _A_a_f; }
-            set { _A_a_f = value; }
-        }
     }
 }
